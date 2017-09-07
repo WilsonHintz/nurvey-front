@@ -1,0 +1,96 @@
+
+<div class="auth-main">
+  <div class="auth-block">
+    <h1>Iniciar Sesión</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+      <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+        <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
+
+        <div class="col-sm-10">
+          <input [formControl]="password" type="password" class="form-control" id="inputPassword3" placeholder="Contraseña">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-8 col-sm-12">
+          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">Iniciar Sesión</button>
+          <a routerLink="/login" class="forgot-pass">Olvidó su contraseña?</a>
+        </div>
+        <a routerLink="/register" class="auth-link">Nuevo en Nurvey? Regístrate!</a>
+      </div>
+    </form>
+
+  </div>
+  <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+
+      var config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@')))
+      );
+
+      var params = Object.assign({
+        domain: config.auth0Domain,
+        clientID: config.clientID,
+        redirectUri: config.callbackURL,
+        responseType: 'code'
+      }, config.internalOptions);
+
+      var webAuth = new auth0.WebAuth(params);
+
+      var databaseConnection = 'Username-Password-Authentication';
+
+      function login(e) {
+        e.preventDefault();
+        var username = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        webAuth.redirect.loginWithCredentials({
+          connection: databaseConnection,
+          username: username,
+          password: password
+        }, function(err) {
+          if (err) displayError(err);
+        });
+      }
+
+      function signup() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        webAuth.redirect.signupAndLogin({
+          connection: databaseConnection,
+          email: email,
+          password: password
+        }, function(err) {
+          if (err) displayError(err);
+        });
+      }
+
+      function loginWithGoogle() {
+        webAuth.authorize({
+          connection: 'google-oauth2'
+        }, function(err) {
+          if (err) displayError(err);
+        });
+      }
+
+      function displayError(err) {
+        var errorMessage = document.getElementById('error-message');
+        errorMessage.innerHTML = err.description;
+        errorMessage.style.display = 'block';
+      }
+
+      document.getElementById('btn-login').addEventListener('click', login);
+      document.getElementById('btn-google').addEventListener('click', loginWithGoogle);
+      document.getElementById('btn-signup').addEventListener('click', signup);
+    });
+  </script>
+</div>

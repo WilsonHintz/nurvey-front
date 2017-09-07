@@ -31,6 +31,7 @@
     "core-js": "^2.4.1",
     "jquery": "^1.12.4",
     "moment": "^2.18.1",
+    "node-sass": "^4.5.3",
     "rxjs": "^5.1.0",
     "survey-angular": "^0.12.23",
     "surveyjs-editor": "^0.12.23",

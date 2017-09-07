@@ -17,7 +17,9 @@ export const ROUTES: RouteInfo[] = [
     { path: 'icons', title: 'Icons',  icon:'ti-pencil-alt2', class: '' },
     { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
     { path: 'notifications', title: 'Notifications',  icon:'ti-bell', class: '' },
-    { path: 'editor', title: 'Editor',  icon:'ti-panel', class: '' },
+    { path: 'editor', title: 'Editor',  icon:'ti-pencil-alt', class: '' },
+    { path: 'login', title: 'Inciar Sesión',  icon:'ti-user', class: '' },
+    { path: 'register', title: 'Registrar',  icon:'ti-user', class: '' },
 ];
 
 @Component({
