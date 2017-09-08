@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-4" *ngIf="encuestas">
+        <ul class="list-group">
+        <li *ngFor="let u of encuestas" class="list-group-item" (click)="selectEncuesta(u)" [class.active]="u == activeUser">
+            {{u.tituloEncuesta}}
+        </li>
+        </ul>
+    </div>
+    <div class="col-sm-8" >
+        <div class="survey-container contentcontainer codecontainer panel svd_content" id="surveyElement"> 
+            <div id="surveyResult">
+            </div>
+        </div>
+    </div>
+</div>
