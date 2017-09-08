@@ -21,6 +21,7 @@ import { NotificationsComponent }   from './notifications/notifications.componen
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { SurveyService } from './shared/services/survey.service';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component' 
+import { misEncuestasComponent } from './user/misencuestas.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SurveyEditorComponent } from './surveyEditor/survey.editor.component'
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-    SurveyEditorComponent
+    SurveyEditorComponent,
+    misEncuestasComponent
   ],
   imports: [
     BrowserModule,

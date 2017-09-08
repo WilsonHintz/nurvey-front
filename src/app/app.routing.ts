@@ -8,7 +8,7 @@ import { IconsComponent }   from './icons/icons.component';
 import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component'
-
+import { misEncuestasComponent } from './user/misencuestas.component'
 
 export const AppRoutes: Routes = [
     {
@@ -47,5 +47,9 @@ export const AppRoutes: Routes = [
     {
         path: 'editor',
         component: SurveyEditorComponent
+    },
+    {
+        path: 'misEncuestas',
+        component: misEncuestasComponent
     }
 ]

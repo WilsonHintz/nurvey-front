@@ -18,6 +18,7 @@ export const ROUTES: RouteInfo[] = [
     { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
     { path: 'notifications', title: 'Notifications',  icon:'ti-bell', class: '' },
     { path: 'editor', title: 'Editor',  icon:'ti-panel', class: '' },
+    { path: 'misEncuestas', title: 'Mis Encuestas',  icon:'ti-files', class: '' }
 ];
 
 @Component({
