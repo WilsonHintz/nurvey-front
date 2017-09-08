@@ -20,9 +20,10 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { SurveyService } from './shared/services/survey.service';
-import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SurveyEditorComponent } from './surveyEditor/survey.editor.component' 
+import { misEncuestasComponent } from './user/misencuestas.component'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     RegisterComponent,
     SurveyEditorComponent
+    misEncuestasComponent
   ],
   imports: [
     BrowserModule,

@@ -7,10 +7,9 @@ import { TypographyComponent }   from './typography/typography.component';
 import { IconsComponent }   from './icons/icons.component';
 import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
-import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { misEncuestasComponent } from './user/misencuestas.component'
 
 export const AppRoutes: Routes = [
     {
@@ -57,5 +56,9 @@ export const AppRoutes: Routes = [
     {
         path: 'register',
         component: RegisterComponent
+    },
+    {
+        path: 'misEncuestas',
+        component: misEncuestasComponent
     }
 ]
