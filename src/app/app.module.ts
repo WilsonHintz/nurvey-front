@@ -22,8 +22,8 @@ import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { SurveyService } from './shared/services/survey.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SurveyEditorComponent } from './surveyEditor/survey.editor.component' 
-import { misEncuestasComponent } from './user/misencuestas.component'
+import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
+import { misEncuestasComponent } from './user/misencuestas.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { misEncuestasComponent } from './user/misencuestas.component'
     UpgradeComponent,
     LoginComponent,
     RegisterComponent,
-    SurveyEditorComponent
-    misEncuestasComponent
+    SurveyEditorComponent,
+    misEncuestasComponent,
   ],
   imports: [
     BrowserModule,

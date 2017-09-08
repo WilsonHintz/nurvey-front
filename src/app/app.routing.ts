@@ -9,7 +9,8 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { misEncuestasComponent } from './user/misencuestas.component'
+import { misEncuestasComponent } from './user/misencuestas.component';
+import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 
 export const AppRoutes: Routes = [
     {
