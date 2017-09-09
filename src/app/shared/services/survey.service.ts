@@ -41,26 +41,30 @@ getClientesByFiltro(parm: String){
 }  
 
 saveSurvey(survey: SurveyModelClass) {
-    //console.log(survey);
-    //var header = {'id': 1000, 'userName':"Cooper"};
-    //var jsonHeader = JSON.stringify(header)
-   
-    //let body = JSON.stringify(survey);
-    //let surveyArray = [];
-    //surveyArray.push(jsonHeader)
-    //jsonHeader = jsonHeader.concat(body)
-    //surveyArray = surveyArray.concat(body)
-    //let surveyJson = JSON.stringify(jsonHeader)
-    //console.log(surveyArray)
+    let surveyModel: SurveyModelClass
 
-    //let headers = new Headers({ 'Content-Type': 'application/json' });
-    //let options = new RequestOptions({ headers: headers });
-    //return this.http.post(SERVER_REST_API_URL, jsonHeader, options);
+    interface surveyI {
+        title: string;
+        pages: string;
+    }
+
+    let surveyJson = JSON.stringify(survey)
+    let objSurvey: surveyI = JSON.parse(surveyJson)
+
+    //surveyModel.definicion = surveyJson
+    surveyModel.tituloEncuesta = objSurvey.title
+    surveyModel.idCategoriaEncuesta = 1
+    surveyModel.idUsuario = 1
+
+    surveyModel = new SurveyModelClass(1,surveyJson,1,1,objSurvey.title)
+
+    console.log("MODELO SURVEY TO POST "+surveyModel)
 
     let body = JSON.stringify(survey); 
+
     let headers = new Headers({ 'Content-Type': 'application/json' }); 
     let options = new RequestOptions({ headers: headers }); 
-    return this.http.post(SERVER_REST_API_URL, body, options);
+    return this.http.post(this.serverRestAPIUrl + "/Encuesta", body, options);
 }
 
 getSurveyById(surveyIdParm: Number) : string {
@@ -69,17 +73,12 @@ getSurveyById(surveyIdParm: Number) : string {
             for (let u of resp) {
                 
                 if (u.id === surveyIdParm) {
-                    //console.log(u.id)
-                    //console.log("las paginas")
-                    //console.log(u.pages)
-                    console.log("si coincide...")
                     this.surveyObjet = u
                     console.log("surveyObject: "+this.surveyObjet)
                     this.salidaString = JSON.stringify(this.surveyObjet)
                     return this.salidaString;
                 }
                 else {
-                    console.log("no coincide...")
                     this.salidaString = ""
                 }
             }

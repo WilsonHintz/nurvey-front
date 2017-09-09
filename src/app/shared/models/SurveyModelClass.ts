@@ -1,11 +1,15 @@
 export class SurveyModelClass{
-    surveyId: number;
-    surveyName: string;
-    userName: string;
+    idEncuesta: number;
+    definicion: string;
+    idCategoriaEncuesta: number;
+    idUsuario: number;
+    tituloEncuesta: string;
 
-    constructor(surveyId,surveyName,userName){
-        this.surveyId = surveyId;
-        this.surveyName = surveyName;
-        this.userName = userName;
+    constructor(idEncuesta,definicion,idCategoriaEncuesta,idUsuario,tituloEncuesta){
+        this.idEncuesta = idEncuesta;
+        this.definicion = definicion;
+        this.idCategoriaEncuesta = idCategoriaEncuesta;
+        this.idUsuario = idUsuario;
+        this.tituloEncuesta = tituloEncuesta;
     }
 }
