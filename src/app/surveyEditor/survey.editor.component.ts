@@ -1,6 +1,8 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as SurveyEditor from 'surveyjs-editor';
+import 'jquery';
+import 'bootstrap';
 
 import { SurveyService } from '../shared/services/survey.service';
 import { SurveyModelClass } from '../shared/models/SurveyModelClass';

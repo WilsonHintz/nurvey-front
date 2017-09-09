@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import 'jquery';
+import 'bootstrap';
 declare var $:any;
 
 @Component({
