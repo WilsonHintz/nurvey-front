@@ -25,6 +25,13 @@ import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './user/misencuestas.component';
 
+import { customHttpProvider } from './shared/helpers/index';
+import { AlertComponent } from './shared/directives/index';
+import { AuthGuard } from './shared/guards/index';
+import { AlertService, AuthenticationService, UserService } from './shared/services/index';
+import { HomeComponent } from './home/index';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +47,7 @@ import { misEncuestasComponent } from './user/misencuestas.component';
     RegisterComponent,
     SurveyEditorComponent,
     misEncuestasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,12 @@ import { misEncuestasComponent } from './user/misencuestas.component';
 
   ],
   providers: [
-    SurveyService
+    SurveyService,
+    customHttpProvider,
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

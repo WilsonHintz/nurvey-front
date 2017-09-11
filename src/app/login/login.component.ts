@@ -1,3 +1,66 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms'; 
+import { AlertService, AuthenticationService } from '../shared/services/index';
+ 
+@Component({
+    selector: 'login',
+    moduleId: module.id,
+    templateUrl: 'login.html'
+})
+ 
+export class LoginComponent implements OnInit {
+    // public form:FormGroup;
+    // public email:AbstractControl;
+    // public password:AbstractControl;
+    // public submitted:boolean = false;
+    model: any = {};
+    loading = false;
+    returnUrl: string;
+ 
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private alertService: AlertService) 
+        {
+          // this.form = fb.group({
+          //   'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+          //   'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+          // });
+      
+          // this.email = this.form.controls['email'];
+          // this.password = this.form.controls['password'];
+          // this.router = this.router;
+          // this.route = this.route;
+          // this.authenticationService = this.authenticationService;
+          // this.alertService = this.alertService;
+         }
+ 
+    ngOnInit() {
+        // reset login status
+        this.authenticationService.logout();
+ 
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+ 
+    login() {
+        this.loading = true;
+        this.authenticationService.login(this.model.email, this.model.password)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });
+    }
+}
+
+
+/*
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 
@@ -33,56 +96,5 @@ export class LoginComponent {
 }
 
 
-/*
-function login(email, password, callback) {
-  //this example uses the "tedious" library
-  //more info here: http://pekim.github.io/tedious/index.html
-  var connection = sqlserver.connect({
-    userName: 'test',
-    password: 'test',
-    server: 'your-sql-server.example.com',
-    options: {
-      database: 'mydb',
-      rowCollectionOnRequestCompletion: true
-    }
-  });
 
-  var query = "SELECT Id, Nickname, Email, Password " +
-    "FROM dbo.Users WHERE Email = @Email";
-
-  connection.on('debug', function (text) {
-    console.log(text);
-  }).on('errorMessage', function (text) {
-    console.log(JSON.stringify(text, null, 2));
-  }).on('infoMessage', function (text) {
-    console.log(JSON.stringify(text, null, 2));
-  });
-
-  connection.on('connect', function (err) {
-    if (err) return callback(err);
-
-    var request = new sqlserver.Request(query, function (err, rowCount, rows) {
-      if (err) {
-        callback(new Error(err));
-      } else if (rowCount < 1) {
-        callback(new WrongUsernameOrPasswordError(email));
-      } else {
-        bcrypt.compare(password, rows[0][3].value, function (err, isValid) {
-          if (err) { callback(new Error(err)); }
-          else if (!isValid) { callback(new WrongUsernameOrPasswordError(email)); }
-          else {
-            callback(null, {
-              user_id: rows[0][0].value,
-              nickname: rows[0][1].value,
-              email: rows[0][2].value
-            });
-          }
-        });
-      }
-    });
-
-    request.addParameter('Email', sqlserver.Types.VarChar, email);
-    connection.execSql(request);
-  });
-}
 */

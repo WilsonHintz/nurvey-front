@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { misEncuestasComponent } from './user/misencuestas.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
+import { HomeComponent } from './home/index';
+import { AuthGuard } from './shared/guards/index';
 
 export const AppRoutes: Routes = [
     {
@@ -18,6 +20,7 @@ export const AppRoutes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
     },
+    { path: 'home ', component: HomeComponent, canActivate: [AuthGuard] },
     {
         path: 'dashboard',
         component: DashboardComponent
@@ -59,7 +62,12 @@ export const AppRoutes: Routes = [
         component: RegisterComponent
     },
     {
+        path: 'home',
+        component: RegisterComponent
+    },
+    {
         path: 'misEncuestas',
         component: misEncuestasComponent
     }
+
 ]
