@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { SurveyModelClass } from '../models/SurveyModelClass';
 import { environment } from '../../../environments/environment'
 
@@ -41,30 +41,33 @@ getClientesByFiltro(parm: String){
 }  
 
 saveSurvey(survey: SurveyModelClass) {
-    let surveyModel: SurveyModelClass
-
+    
     interface surveyI {
         title: string;
         pages: string;
     }
 
     let surveyJson = JSON.stringify(survey)
+
     let objSurvey: surveyI = JSON.parse(surveyJson)
 
-    //surveyModel.definicion = surveyJson
-    surveyModel.tituloEncuesta = objSurvey.title
-    surveyModel.idCategoriaEncuesta = 1
-    surveyModel.idUsuario = 1
+    var surveyModel = new SurveyModelClass()
 
-    surveyModel = new SurveyModelClass(1,surveyJson,1,1,objSurvey.title)
+    surveyModel.inicializate(surveyJson,1,1,objSurvey.title)
 
-    console.log("MODELO SURVEY TO POST "+surveyModel)
+    let surveyJsonToPost = JSON.stringify(surveyModel)
 
-    let body = JSON.stringify(survey); 
+    console.log("SURVEY JSON TO POST "+surveyJsonToPost)
 
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
-    let options = new RequestOptions({ headers: headers }); 
-    return this.http.post(this.serverRestAPIUrl + "/Encuesta", body, options);
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
+    let options = new RequestOptions({
+        method: 'POST',
+        url: this.serverRestAPIUrl + "/Encuesta",
+        headers: headers,
+        body: JSON.stringify(surveyModel)
+    });
+
+    return this.http.post(this.serverRestAPIUrl + "/Encuesta", surveyJsonToPost, options)
 }
 
 getSurveyById(surveyIdParm: Number) : string {

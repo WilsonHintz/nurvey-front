@@ -5,8 +5,9 @@ export class SurveyModelClass{
     idUsuario: number;
     tituloEncuesta: string;
 
-    constructor(idEncuesta,definicion,idCategoriaEncuesta,idUsuario,tituloEncuesta){
-        this.idEncuesta = idEncuesta;
+    constructor(){}
+
+    public inicializate(definicion,idCategoriaEncuesta,idUsuario,tituloEncuesta){
         this.definicion = definicion;
         this.idCategoriaEncuesta = idCategoriaEncuesta;
         this.idUsuario = idUsuario;
