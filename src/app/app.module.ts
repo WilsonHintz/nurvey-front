@@ -11,6 +11,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { NguiMapModule} from '@ngui/map';
 
+
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { UserComponent }   from './user/user.component';
 import { TableComponent }   from './table/table.component';

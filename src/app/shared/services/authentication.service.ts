@@ -14,8 +14,8 @@ export class AuthenticationService {
         this.serverRestAPIUrl = environment.apiEndPoint + "/api";
     }
 
-    login(email: string, password: string) {
-        return this.http.post(this.serverRestAPIUrl + '/Usuario', { email: email, password: password })
+    login(emailUsuario: string, passwordUsuario: string) {
+        return this.http.post(this.serverRestAPIUrl + '/Usuario', { emailUsuario: emailUsuario, passwordUsuario: passwordUsuario })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();

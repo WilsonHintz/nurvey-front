@@ -24,7 +24,16 @@ export class UserService {
 
     create(user: UserModelClass) {
         let userJson = JSON.stringify(user)
-        return this.http.post(this.serverRestAPIUrl + '/Usuario', user);
+       // console.log(userJson);
+         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
+         let options = new RequestOptions({
+            method: 'POST',
+            url: this.serverRestAPIUrl + '/Usuario',
+            headers: headers,
+            body: JSON.stringify(user)
+         });
+         console.log(options);
+        return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
     }
 
     update(user: UserModelClass) {

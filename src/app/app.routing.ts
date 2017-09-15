@@ -15,6 +15,7 @@ import { HomeComponent } from './home/index';
 import { AuthGuard } from './shared/guards/index';
 
 export const AppRoutes: Routes = [
+
     {
         path: '',
         redirectTo: 'dashboard',
