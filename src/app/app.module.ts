@@ -48,7 +48,8 @@ import { HomeComponent } from './home/index';
     RegisterComponent,
     SurveyEditorComponent,
     misEncuestasComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
