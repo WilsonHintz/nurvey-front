@@ -7,16 +7,17 @@ import { AlertService, UserService } from '../shared/services/index';
 @Component({
     selector: 'register',
     moduleId: module.id,
-    templateUrl: 'register.html'
+    templateUrl: 'register.html',
+    styleUrls: ['./register.css']
 })
  
 export class RegisterComponent {
-    // public form:FormGroup;
-    // public nombreUsuario:AbstractControl;
-    // public email:AbstractControl;
-    // public password:AbstractControl;
-    // public repeatPassword:AbstractControl;
-    // public passwords:FormGroup;
+    public form:FormGroup;
+    public nombreUsuario:AbstractControl;
+    public email:AbstractControl;
+    public password:AbstractControl;
+    public repeatPassword:AbstractControl;
+    public passwords:FormGroup;
 
     model: any = {};
     loading = false;
@@ -24,25 +25,26 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService) 
+        private alertService: AlertService,
+        fb:FormBuilder) 
         {
-          // this.form = fb.group({
-          //   'nombreUsuario': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-          //   'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
-          //   'passwords': fb.group({
-          //     'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-          //     'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-          //   }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
-          // });
+          this.form = fb.group({
+            'nombreUsuario': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+            'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
+            'passwords': fb.group({
+              'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+              'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+            }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
+          });
       
-          // this.nombreUsuario = this.form.controls['nombreUsuario'];
-          // this.email = this.form.controls['email'];
-          // this.passwords = <FormGroup> this.form.controls['passwords'];
-          // this.password = this.passwords.controls['password'];
-          // this.repeatPassword = this.passwords.controls['repeatPassword'];
-          // this.router = this.router;
-          // this.userService = this.userService;
-          // this.alertService = this.alertService;
+          this.nombreUsuario = this.form.controls['nombreUsuario'];
+          this.email = this.form.controls['email'];
+          this.passwords = <FormGroup> this.form.controls['passwords'];
+          this.password = this.passwords.controls['password'];
+          this.repeatPassword = this.passwords.controls['repeatPassword'];
+          this.router = this.router;
+          this.userService = this.userService;
+          this.alertService = this.alertService;
          }
 
  

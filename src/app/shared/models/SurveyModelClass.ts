@@ -8,7 +8,8 @@ export class SurveyModelClass{
     constructor(){}
 
     public inicializate(definicion,idCategoriaEncuesta,idUsuario,tituloEncuesta){
-        this.definicion = definicion;
+        
+        this.definicion = JSON.parse(definicion);
         this.idCategoriaEncuesta = idCategoriaEncuesta;
         this.idUsuario = idUsuario;
         this.tituloEncuesta = tituloEncuesta;

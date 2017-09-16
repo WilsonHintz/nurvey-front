@@ -1,27 +1,127 @@
-
-<div class="col-md-6 col-md-offset-3">
-    <h1>Registrarse en Nurvey</h1>
-  <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nombreUsuario.valid }">
-          <input type="text" class="form-control" placeholder="Nombre" name="nombreUsuario" [(ngModel)]="model.nombreUsuario" #nombreUsuario="ngModel" required />
-          <div *ngIf="f.submitted && !nombreUsuario.valid" class="help-block">Nombre de usuario requerido</div>
+<div class="container" style="margin-top:40px">
+  <div class="row">
+     <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        <h1 class="form-group text-center">Registro</h1>
+        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nombreUsuario.valid }">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Nombre" name="nombreUsuario" [(ngModel)]="model.nombreUsuario" #nombreUsuario="ngModel" required />
+            </div>
+              <div *ngIf="f.submitted && !nombreUsuario.valid" class="help-block">Nombre requerido</div>
+              
+            </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>  
+            <input type="text" class="form-control" placeholder="Email" name="emailUsuario" [(ngModel)]="model.emailUsuario" #email="ngModel" required />
+          </div>  
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email requerido</div>
+            </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>  
+            <input type="password" class="form-control" placeholder="Contraseña" name="passwordUsuario" [(ngModel)]="model.passwordUsuario" #password="ngModel" required />
+            </div>  
+              <div *ngIf="f.submitted && !password.valid" class="help-block">Contraseña requerida</div>
+            </div>
+             <div class="form-group" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="repeatPassword" placeholder="Repetir Contraseña">
+                </div>
+                  <div *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Contraseñas no coincidentes.</div>
+              </div> 
+          <div class="form-group">
+              <button [disabled]="loading" class="btn btn-lg btn-primary btn-block">Aceptar</button>
+              <div class="panel-footer ">
+                  Ya tiene cuenta en Nurvey? <a href="/login" onClick=""> Ingresar! </a>
+                </div>
+          </div>
+        </form>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-          <input type="text" class="form-control" placeholder="Email" name="emailUsuario" [(ngModel)]="model.emailUsuario" #email="ngModel" required />
-          <div *ngIf="f.submitted && !email.valid" class="help-block">Email requerido</div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-          <input type="password" class="form-control" placeholder="Contraseña" name="passwordUsuario" [(ngModel)]="model.passwordUsuario" #password="ngModel" required />
-          <div *ngIf="f.submitted && !password.valid" class="help-block">Contraseña requerida</div>
-      </div>
-      <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Aceptar</button>
-          <a [routerLink]="['/login']" class="btn btn-link">Ya tiene cuenta en Nurvey? Ingresar!</a>
-      </div>
-  </form>
+    </div>
+  </div>
 </div>
 
+
 <!--
+
+<div class="container" style="margin-top:40px">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <div class="panel-body">
+              <h1 class="form-group text-center">Registro</h1>
+            <form role="form" action="#" method="POST">
+              <fieldset>
+                <div class="row">
+                  <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                      <div class="form-group">
+                          <div class="cols-sm-10">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                              <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"  placeholder="Ingrese su nombre"/>
+                            </div>
+                          </div>
+                        </div>
+            
+                        <div class="form-group">
+                          <div class="cols-sm-10">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                              <input type="text" class="form-control" name="emailUsuario" id="emailUsuario"  placeholder="Ingrese su Email"/>
+                              <div *ngIf="f.submitted && !email.valid" class="help-block">Email requerido</div>
+                            </div>
+                          </div>
+                        </div>
+            
+            
+                        <div class="form-group">
+                          <div class="cols-sm-10">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                              <input type="password" class="form-control" name="passwordUsuario" id="passwordUsuario"  placeholder="Ingrese su contraseña"/>
+                            </div>
+                          </div>
+                        </div>
+            
+                        <div class="form-group">
+                          <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                          <div class="cols-sm-10">
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                              <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                            </div>
+                          </div>
+                        </div>            
+                        <div class="form-group ">
+                          <button type="button" class="btn btn-primary btn-lg btn-block login-button">Registrarse</button>
+                        </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="panel-footer ">
+            Ya tiene cuenta en Nurvey? <a href="/login" onClick=""> Iniciar Sesión </a>
+          </div>
+                </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+===========================================
+
 <div class="auth-main">
   <div class="auth-block">
     <h1>Registrarse en Nurvey</h1>
