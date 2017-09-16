@@ -32,7 +32,7 @@ export class misEncuestasComponent implements OnInit {
         this.surveyService.getEncuestas()
           .subscribe((resp) => {
             for (let u of resp) {
-              this.encuestas.push(new EncuestaModelClass(u.idEncuesta, u.tituloEncuesta, u.definicion, u.idCategoriaEncuesta ,u.idUsuario));
+              this.encuestas.push(new EncuestaModelClass(u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario));
             }
           });
 
@@ -41,7 +41,7 @@ export class misEncuestasComponent implements OnInit {
     selectEncuesta(encuesta){
         this.activeEncuesta = encuesta;
         console.log(this.activeEncuesta)
-        this.surveyRender = JSON.parse(this.activeEncuesta.definicion)
+        this.surveyRender = JSON.parse(this.activeEncuesta.definicionJSON)
         console.log(this.surveyRender)
         const surveyModel = new Survey.ReactSurveyModel(this.surveyRender);
         Survey.SurveyNG.render('surveyElement', { model: surveyModel });
