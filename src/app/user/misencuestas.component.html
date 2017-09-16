@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 card" *ngIf="encuestas">
+            <div class="header">
+                <h4 class="title">Mis Encuestas</h4>
+                <p class="category">Aqui puede visualizar sus encuestas.</p>
+            </div>
+            <div class="content table-responsive table-full-width">
+
+                <table class="table table-striped">
+                    <tbody>
+                        <tr *ngFor="let u of encuestas" class="list-group-item" (click)="selectEncuesta(u)" [class.active]="u == activeUser">
+                                {{u.tituloEncuesta}}
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- <ul class="content table-responsive table-full-width">
+                    <li *ngFor="let u of encuestas" class="list-group-item" (click)="selectEncuesta(u)" [class.active]="u == activeUser">
+                        {{u.tituloEncuesta}}
+                    </li>
+                </ul> -->
+
+            </div>
+        </div>
+        <div class="col-sm-8" >
+            <div class="survey-container contentcontainer codecontainer panel svd_content" id="surveyElement"> 
+                <div id="surveyResult">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

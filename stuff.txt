@@ -1,0 +1,3 @@
+from angular-cli.json
+    scripts
+         "../node_modules/jquery/dist/jquery.js",

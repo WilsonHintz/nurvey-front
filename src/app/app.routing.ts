@@ -7,15 +7,21 @@ import { TypographyComponent }   from './typography/typography.component';
 import { IconsComponent }   from './icons/icons.component';
 import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
-import { SurveyEditorComponent } from './surveyEditor/survey.editor.component'
-
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { misEncuestasComponent } from './user/misencuestas.component';
+import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
+import { HomeComponent } from './home/index';
+import { AuthGuard } from './shared/guards/index';
 
 export const AppRoutes: Routes = [
+
     {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
     },
+    { path: 'home ', component: HomeComponent, canActivate: [AuthGuard] },
     {
         path: 'dashboard',
         component: DashboardComponent
@@ -47,5 +53,22 @@ export const AppRoutes: Routes = [
     {
         path: 'editor',
         component: SurveyEditorComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: 'home',
+        component: RegisterComponent
+    },
+    {
+        path: 'misEncuestas',
+        component: misEncuestasComponent
     }
+
 ]

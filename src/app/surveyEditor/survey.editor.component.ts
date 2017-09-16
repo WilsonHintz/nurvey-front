@@ -1,6 +1,8 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as SurveyEditor from 'surveyjs-editor';
+import 'jquery';
+import 'bootstrap';
 
 import { SurveyService } from '../shared/services/survey.service';
 import { SurveyModelClass } from '../shared/models/SurveyModelClass';
@@ -32,9 +34,9 @@ export class SurveyEditorComponent  {
     }
 
     saveMySurvey = () => {
-        // console.log(this.editor.text); // json puro
-        //console.log(JSON.stringify(this.editor.text)); //json stringify
-        //console.log(JSON.parse(this.editor.text)); // json parseado a Objeto para emitir
+        console.log(this.editor.text); // json puro
+        console.log(JSON.stringify(this.editor.text)); //json stringify
+        console.log(JSON.parse(this.editor.text)); // json parseado a Objeto para emitir
        this.surveySaved.emit(JSON.parse(this.editor.text));
 
         this.newSurvey = JSON.parse(this.editor.text);
