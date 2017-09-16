@@ -25,7 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './user/misencuestas.component';
 
-import { customHttpProvider } from './shared/helpers/index';
+//import { customHttpProvider } from './shared/helpers/index';
 import { AlertComponent } from './shared/directives/index';
 import { AuthGuard } from './shared/guards/index';
 import { AlertService, AuthenticationService, UserService } from './shared/services/index';
@@ -64,7 +64,7 @@ import { HomeComponent } from './home/index';
   ],
   providers: [
     SurveyService,
-    customHttpProvider,
+    //customHttpProvider,
     AuthGuard,
     AlertService,
     AuthenticationService,

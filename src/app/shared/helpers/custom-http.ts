@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+﻿/** import { Injectable } from "@angular/core";
 import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from "@angular/http";
 import { appConfig } from '../../app.config';
 
@@ -64,3 +64,4 @@ export let customHttpProvider = {
     useFactory: customHttpFactory,
     deps: [XHRBackend, RequestOptions]
 };
+**/
