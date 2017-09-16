@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiEndPoint: "http://nurvey.sytes.net:8000"
 };
