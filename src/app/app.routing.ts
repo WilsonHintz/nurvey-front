@@ -9,14 +9,14 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { misEncuestasComponent } from './user/misencuestas.component';
+import { misEncuestasComponent } from './misencuestas/misencuestas.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './shared/guards/index';
 
 export const AppRoutes: Routes = [
 
-    {
+    { 
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
