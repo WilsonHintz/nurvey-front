@@ -24,7 +24,7 @@ import { SurveyService } from './shared/services/survey.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
-import { misEncuestasComponent } from './user/misencuestas.component';
+import { misEncuestasComponent } from './misencuestas/misencuestas.component';
 
 //import { customHttpProvider } from './shared/helpers/index';
 import { AlertComponent } from './shared/directives/index';
