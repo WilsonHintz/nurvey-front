@@ -9,9 +9,15 @@
 
                 <table class="table table-striped">
                     <tbody>
-                        <tr *ngFor="let u of encuestas" class="list-group-item" (click)="selectEncuesta(u)" [class.active]="u == activeUser">
-                                {{u.tituloEncuesta}}
+                        <tr *ngFor="let u of encuestas" class="list-group-item" [class.active]="u == activeUser">
+                                <div class="row">
+                                    <div class="col-sm-10" (click)="selectEncuesta(u)" > {{u.tituloEncuesta}} </div>
+                                    <div class="col-sm-2"><h2 (click)="deleteUser()" class="ti-trash"></h2> </div>
+                                </div>
                         </tr>
+                        <td>
+                            
+                        </td>
                     </tbody>
                 </table>
 
