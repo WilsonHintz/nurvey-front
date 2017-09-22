@@ -12,26 +12,29 @@
 									</div>
 								</div>
       <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+          <div class="form-group" [ngClass]="{ 'has-error': !email.valid && email.touched }">
               <div class="input-group">
               <span class="input-group-addon">
                   <i class="fa fa-envelope fa"></i>
                 </span>   
-            <input type="text" class="form-control" name="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required />
-              <div *ngIf="f.submitted && !email.valid" class="help-block">Email es requerido</div>
+            <input [formControl]="email" type="email" class="form-control" name="emailUsuario" 
+            placeholder="Email" [(ngModel)]="model.emailUsuario" />
+              <div *ngIf="f.submitted && !email.valid" class="help-block">Ingrese Email</div>
               </div>
           </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+
+          <div class="form-group" [ngClass]="{ 'has-error': !password.valid && password.touched }">
               <div class="input-group">
                   <span class="input-group-addon">
                     <i class="glyphicon glyphicon-lock"></i>
                   </span>
-              <input type="password" class="form-control" name="password" placeholder="Contraseña" [(ngModel)]="model.password" #password="ngModel" required />
+              <input [formControl]="password" type="password" class="form-control" name="passwordUsuario" 
+              placeholder="Contraseña" [(ngModel)]="model.passwordUsuario" />
               <div *ngIf="f.submitted && !password.valid" class="help-block">Contraseña es requerida</div>
               </div>
             </div>
           <div class="form-group">
-              <button [disabled]="loading" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
+              <button (click)="login()" [disabled]="loading" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
               <div class="panel-footer ">
                   Aún no tiene cuenta en Nurvey? <a href="/register" onClick=""> Registrarse </a>
                 </div>

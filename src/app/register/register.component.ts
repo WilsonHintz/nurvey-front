@@ -6,14 +6,14 @@ import { AlertService, UserService } from '../shared/services/index';
  
 @Component({
     selector: 'register',
-    moduleId: module.id,
+    // moduleId: module.id,
     templateUrl: 'register.html',
     styleUrls: ['./register.css']
 })
  
 export class RegisterComponent {
     public form:FormGroup;
-    public nombreUsuario:AbstractControl;
+    public name:AbstractControl;
     public email:AbstractControl;
     public password:AbstractControl;
     public repeatPassword:AbstractControl;
@@ -29,7 +29,7 @@ export class RegisterComponent {
         fb:FormBuilder) 
         {
           this.form = fb.group({
-            'nombreUsuario': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+            'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
             'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
             'passwords': fb.group({
               'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -37,7 +37,7 @@ export class RegisterComponent {
             }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
           });
       
-          this.nombreUsuario = this.form.controls['nombreUsuario'];
+          this.name = this.form.controls['name'];
           this.email = this.form.controls['email'];
           this.passwords = <FormGroup> this.form.controls['passwords'];
           this.password = this.passwords.controls['password'];
@@ -53,8 +53,9 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                    this.alertService.success('Registrado exitosamente', true);
+                    console.log(AlertService);
+                    this.router.navigate(['/home']);
                 },
                 error => {
                     this.alertService.error(error);
@@ -78,7 +79,7 @@ import {EmailValidator, EqualPasswordsValidator} from './validators';
 export class RegisterComponent {
 
   public form:FormGroup;
-  public nombreUsuario:AbstractControl;
+  public name:AbstractControl;
   public email:AbstractControl;
   public password:AbstractControl;
   public repeatPassword:AbstractControl;
@@ -89,7 +90,7 @@ export class RegisterComponent {
   constructor(fb:FormBuilder) {
 
     this.form = fb.group({
-      'nombreUsuario': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
       'passwords': fb.group({
         'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -97,7 +98,7 @@ export class RegisterComponent {
       }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
     });
 
-    this.nombreUsuario = this.form.controls['nombreUsuario'];
+    this.name = this.form.controls['name'];
     this.email = this.form.controls['email'];
     this.passwords = <FormGroup> this.form.controls['passwords'];
     this.password = this.passwords.controls['password'];

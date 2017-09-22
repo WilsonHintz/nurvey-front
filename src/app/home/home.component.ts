@@ -5,27 +5,28 @@ import { UserService } from '../shared/services/index';
 
 @Component({
     selector: 'home',
-    moduleId: module.id,
-    templateUrl: 'home.component.html'
+    //moduleId: module.id,
+    //templateUrl: 'home.component.html'
+    template: `<h2>Usuario creado exitosamente!</h2>`
 })
 
-export class HomeComponent implements OnInit {
-    currentUser: UserModelClass;
-    users: UserModelClass[] = [];
+export class HomeComponent {
+    // currentUser: UserModelClass;
+    // users: UserModelClass[] = [];
 
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    // constructor(private userService: UserService) {
+    //     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // }
 
-    ngOnInit() {
-        this.loadAllUsers();
-    }
+    // ngOnInit() {
+    //     this.loadAllUsers();
+    // }
 
-    deleteUser(idUsuario: string) {
-        this.userService.delete(idUsuario).subscribe(() => { this.loadAllUsers() });
-    }
+    // deleteUser(idUsuario: string) {
+    //     this.userService.delete(idUsuario).subscribe(() => { this.loadAllUsers() });
+    // }
 
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
+    // private loadAllUsers() {
+    //     this.userService.getAll().subscribe(users => { this.users = users; });
+    // }
 }

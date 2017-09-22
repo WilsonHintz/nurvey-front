@@ -12,10 +12,10 @@ import { AlertService, AuthenticationService } from '../shared/services/index';
 })
  
 export class LoginComponent implements OnInit {
-    // public form:FormGroup;
-    // public email:AbstractControl;
-    // public password:AbstractControl;
-    // public submitted:boolean = false;
+    public form:FormGroup;
+    public email:AbstractControl;
+    public password:AbstractControl;
+    public submitted:boolean = false;
     model: any = {};
     loading = false;
     returnUrl: string;
@@ -24,19 +24,20 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) 
+        private alertService: AlertService,
+        fb:FormBuilder) 
         {
-          // this.form = fb.group({
-          //   'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-          //   'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-          // });
+          this.form = fb.group({
+            'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+            'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+          });
       
-          // this.email = this.form.controls['email'];
-          // this.password = this.form.controls['password'];
-          // this.router = this.router;
-          // this.route = this.route;
-          // this.authenticationService = this.authenticationService;
-          // this.alertService = this.alertService;
+          this.email = this.form.controls['email'];
+          this.password = this.form.controls['password'];
+          this.router = this.router;
+          this.route = this.route;
+          this.authenticationService = this.authenticationService;
+          this.alertService = this.alertService;
          }
  
     ngOnInit() {

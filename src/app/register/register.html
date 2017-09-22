@@ -5,37 +5,44 @@
         <div class="panel-heading">
         <h1 class="form-group text-center">Registro</h1>
         <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nombreUsuario.valid }">
+
+          <div class="form-group" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
               <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Nombre" name="nombreUsuario" [(ngModel)]="model.nombreUsuario" #nombreUsuario="ngModel" required />
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input [formControl]="name" type="text" class="form-control" 
+              placeholder="Nombre" name="nombreUsuario" [(ngModel)]="model.nombreUsuario"/>
             </div>
-              <div *ngIf="f.submitted && !nombreUsuario.valid" class="help-block">Nombre requerido</div>
-              
+              <div *ngIf="f.submitted && !name.valid" class="help-block">Nombre requerido</div>
             </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+
+            <div class="form-group" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
               <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>  
-            <input type="text" class="form-control" placeholder="Email" name="emailUsuario" [(ngModel)]="model.emailUsuario" #email="ngModel" required />
-          </div>  
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Email requerido</div>
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email"
+                name="emailUsuario" [(ngModel)]="model.emailUsuario">
+              </div>
+              <div *ngIf="f.submitted && !email.valid" class="help-block">Email requerido</div>
             </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+
+          <div class="form-group" [ngClass]="{ 'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
               <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>  
-            <input type="password" class="form-control" placeholder="Contraseña" name="passwordUsuario" [(ngModel)]="model.passwordUsuario" #password="ngModel" required />
+            <input [formControl]="password" type="password" class="form-control" 
+            placeholder="Contraseña" name="passwordUsuario" [(ngModel)]="model.passwordUsuario" />
             </div>  
               <div *ngIf="f.submitted && !password.valid" class="help-block">Contraseña requerida</div>
             </div>
-             <div class="form-group" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                  <input type="password" class="form-control" name="repeatPassword" placeholder="Repetir Contraseña">
+
+              <div class="form-group" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <input [formControl]="repeatPassword" type="password" class="form-control" id="inputPassword4" placeholder="Repetir Contraseña">
+                  </div>
+                  <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Contraseñas no coincidentes.</span>
                 </div>
-                  <div *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Contraseñas no coincidentes.</div>
-              </div> 
+
           <div class="form-group">
-              <button [disabled]="loading" class="btn btn-lg btn-primary btn-block">Aceptar</button>
+              <button (click)="register()" [disabled]="loading" class="btn btn-lg btn-primary btn-block">Aceptar</button>
               <div class="panel-footer ">
                   Ya tiene cuenta en Nurvey? <a href="/login" onClick=""> Ingresar! </a>
                 </div>
