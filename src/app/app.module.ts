@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './misencuestas/misencuestas.component';
+import { respuestaComponent } from './respuesta/respuesta.component';
 
 //import { customHttpProvider } from './shared/helpers/index';
 import { AlertComponent } from './shared/directives/index';
@@ -48,6 +49,7 @@ import { HomeComponent } from './home/index';
     RegisterComponent,
     SurveyEditorComponent,
     misEncuestasComponent,
+    respuestaComponent,
     HomeComponent,
     AlertComponent
   ],
