@@ -22,7 +22,9 @@ export const AppRoutes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
     },
-    { path: 'home ', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent
+     //canActivate: [AuthGuard] 
+    },
     {
         path: 'dashboard',
         component: DashboardComponent
