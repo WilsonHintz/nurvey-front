@@ -3,11 +3,14 @@ import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AuthenticationService } from '../services/authentication.service'
+import { UserModelClass } from '../models/UserModelClass';
+import { UserService } from '../services/index';
 
 @Component({
     moduleId: module.id,
     selector: 'navbar-cmp',
-    templateUrl: 'navbar.component.html'
+    templateUrl: 'navbar.component.html',
+    styleUrls: ['./navbar.css']
 })
 
 export class NavbarComponent implements OnInit{
@@ -16,13 +19,19 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
+    currentUser: UserModelClass;
+    users: UserModelClass[] = [];
+    model: any = {};
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef) {
+    constructor(location:Location, private renderer : Renderer, 
+        private element : ElementRef, private userService: UserService, private authenticationService: AuthenticationService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.authenticationService = this.authenticationService;
     }
 
     ngOnInit(){
@@ -40,6 +49,20 @@ export class NavbarComponent implements OnInit{
         }
         return 'Dashboard';
     }
+
+    login() {
+        
+    this.authenticationService.login(this.model.emailUsuario, this.model.passwordUsuario)
+    }
+
+    salir(){
+        this.authenticationService.logout();
+      }
+
+    loguear(){
+        
+    }
+
     sidebarToggle(){
         var toggleButton = this.toggleButton;
         var body = document.getElementsByTagName('body')[0];
