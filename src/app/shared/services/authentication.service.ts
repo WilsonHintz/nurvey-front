@@ -16,22 +16,30 @@ export class AuthenticationService {
         this.serverRestAPIUrl = environment.apiEndPoint + "/api";
     }
 
-    login(emailUsuario: UserModelClass, passwordUsuario: UserModelClass) {
+    login(emailUsuario: string, passwordUsuario: string) {
         return this.http.get(this.serverRestAPIUrl + '/Usuario?emailUsuario=' + emailUsuario + '&passwordUsuario=' + passwordUsuario )
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                if (user.idUsuario != null) {
+                if (user.idUsuario != 0) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    let userLogueado = localStorage.getItem('currrenUser')
-                    alert(userLogueado)
+                    let userLogueado = localStorage.getItem('currentUser')
+                    console.log(userLogueado)
                     this.isLoggedIn = true;
+                }
+                else
+                {
+                    alert("Usuario o contraseña incorrectos")
                 }
 
                 return user;
             });
     }
+
+    public isAuthenticated(): boolean {
+        return this.isLoggedIn;
+      } 
 
     logout() {
         // remove user from local storage to log user out
