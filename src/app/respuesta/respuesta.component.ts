@@ -41,6 +41,26 @@ export class respuestaComponent implements OnInit, OnDestroy {
                 
                 surveyModel.onComplete.add(function(result) {
                     console.log(result.data)
+                    var item;
+                    var listaRespuestas = [];
+                    for (var type in result.data) {
+                        item = {};
+                        item.codigoPregunta = type;
+                        item.descripcionRespuesta = result.data[type];
+                        item.idEncuesta = parseInt(parm);
+                        listaRespuestas.push(item);
+                        // console.log(item);
+                    }
+                    var salida;
+                    salida = {};   
+                    salida.listaRespuestas = listaRespuestas; 
+                    salida.encuestado = {};
+                    
+                    salida.encuestado.tiempoRespuesta = "2017-09-23T00:28:00";
+                    salida.encuestado.ubicacion = "En mi casa haciendo tesis";
+                    
+                    console.log(JSON.stringify(salida)) 
+                    console.log(JSON.parse(salida)) 
                     document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
                     });
               });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResultadoService } from '../shared/services/resultados.service';
 import * as Chartist from 'chartist';
 
 declare var $:any;
@@ -10,6 +11,11 @@ declare var $:any;
 })
 
 export class DashboardComponent implements OnInit{
+    resultadoService: ResultadoService;
+
+    constructor(resultadoService: ResultadoService){
+      this.resultadoService = resultadoService;
+  }
     ngOnInit(){
         var dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
@@ -96,9 +102,20 @@ export class DashboardComponent implements OnInit{
 
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
-        Chartist.Pie('#chartPreferences', {
-          labels: ['62%','32%','6%'],
-          series: [62, 32, 6]
+        var labelsGrafico = [];
+        var seriesGrafico = [];
+        this.resultadoService.getResultadosGeneral()
+        .subscribe((resp) => {
+          labelsGrafico.push(resp.labels)
+          console.log(labelsGrafico)
+          
+          Chartist.Pie('#chartPreferences', {
+            labels: resp.labels,
+            series: resp.series
+          });
+          
         });
+
+        
     }
 }

@@ -21,6 +21,7 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { SurveyService } from './shared/services/survey.service';
+import { ResultadoService } from './shared/services/resultados.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
@@ -69,6 +70,7 @@ import { HomeComponent } from './home/index';
   providers: [
     SurveyService,
     //customHttpProvider,
+    ResultadoService,
     AuthGuard,
     AlertService,
     AuthenticationService,
