@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms'; 
 import { AlertService, AuthenticationService } from '../shared/services/index';
+import {EmailValidator} from '../register/validators'; 
  
 @Component({
     selector: 'login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
         fb:FormBuilder) 
         {
           this.form = fb.group({
-            'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+            'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
             'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
           });
       
@@ -43,9 +44,8 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
- 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
  
     login() {

@@ -12,17 +12,100 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                        <button type="button" class="btn btn-primary" 
-                        [routerLink]="['login']">Ingresar</button>
-                        <!-- 
+                    <!-- 
                         <button 
-                        (click)="logout()" *ngIf="authenticationService.isLoggedIn" 
-                        type="button" class="btn btn-primary">Ingresar</button>
+                        (click)="salir()" *ngIf="authenticationService.isAuthenticated()" 
+                        type="button" class="btn btn-primary" [routerLink]="['/login']">Salir</button>
+                        -->
                          <button 
-                        (click)="login()" *ngIf="!authenticationService.isLoggedIn" 
-                        type="button" class="btn btn-primary">Ingresar</button> -->
+                        (click)="login()" *ngIf="!authenticationService.isAuthenticated()"
+                        [routerLink]="['login']"
+                        type="button" class="btn btn-primary">Ingresar</button>
+                </li> 
+                <li class="dropdown" *ngIf="authenticationService.isAuthenticated()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>{{currentUser.nombreUsuario}}</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>{{currentUser.nombreUsuario}}</strong></p>
+                                        <p class="text-left small">{{currentUser.emailUsuario}}</p>
+                                        <p class="text-left">
+                                            <a href="#" class="btn btn-primary btn-block btn-sm" [routerLink]="['/user']">Actualizar Datos</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="#" (click)="salir()" 
+                                            class="btn btn-danger btn-block" [routerLink]="['/login']">Cerrar Sesion</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
+            <!-- <a *ngIf="authenticationService.isAuthenticated()">{{currentUser.nombreUsuario}}</a>  -->
         </div>
     </div>
 </nav>
+
+<!--
+    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>Nombre</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Nombre Apellido</strong></p>
+                                        <p class="text-left small">correoElectronico@email.com</p>
+                                        <p class="text-left">
+                                            <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="navbar-login navbar-login-session">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>
+                                            <a href="#" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            -->

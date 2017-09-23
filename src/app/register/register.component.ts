@@ -42,9 +42,9 @@ export class RegisterComponent {
           this.passwords = <FormGroup> this.form.controls['passwords'];
           this.password = this.passwords.controls['password'];
           this.repeatPassword = this.passwords.controls['repeatPassword'];
-          this.router = this.router;
-          this.userService = this.userService;
-          this.alertService = this.alertService;
+          // this.router = this.router;
+          // this.userService = this.userService;
+          // this.alertService = this.alertService;
          }
 
  
@@ -53,9 +53,9 @@ export class RegisterComponent {
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registrado exitosamente', true);
-                    console.log(AlertService);
-                    this.router.navigate(['/home']);
+                    //this.alertService.success('Registrado exitosamente', true);
+                    alert("Usuario registrado exitosamente");
+                    this.router.navigate(['/login']);
                 },
                 error => {
                     this.alertService.error(error);
