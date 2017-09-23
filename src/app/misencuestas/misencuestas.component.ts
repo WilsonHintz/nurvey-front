@@ -41,7 +41,7 @@ export class misEncuestasComponent implements OnInit {
     selectEncuesta(encuesta){
         this.activeEncuesta = encuesta;
         console.log(this.activeEncuesta)
-        this.surveyRender = JSON.parse(this.activeEncuesta.definicionJSON)
+        this.surveyRender = JSON.parse(this.activeEncuesta.definicionJSON) 
         console.log(this.surveyRender)
         const surveyModel = new Survey.ReactSurveyModel(this.surveyRender);
         Survey.SurveyNG.render('surveyElement', { model: surveyModel });

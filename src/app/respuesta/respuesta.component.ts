@@ -35,20 +35,14 @@ export class respuestaComponent implements OnInit, OnDestroy {
             parm = this.id.toString()
             this.surveyService.getEncuestasById(parm)
             .subscribe((resp) => {
-                // for (let u of resp) {
-                //     this.encuestas.push(new EncuestaModelClass(u.idEncuesta, u.tituloEncuesta, u.definicion, u.idCategoriaEncuesta ,u.idUsuario));
-                //   }
                 let u = resp;
-                // this.surveyRender = JSON.parse(u.definicion)
-
-                console.log(u.definicionJSON)
                 const surveyModel = new Survey.ReactSurveyModel(u.definicionJSON);
                 Survey.SurveyNG.render('surveyElement', { model: surveyModel });
                 
                 surveyModel.onComplete.add(function(result) {
-                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
                     console.log(result.data)
-                    });  
+                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
+                    });
               });
 
              
