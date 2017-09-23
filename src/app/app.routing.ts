@@ -71,7 +71,6 @@ export const AppRoutes: Routes = [
     {
         path: 'misEncuestas',
         component: misEncuestasComponent,
-        component: misEncuestasComponent
         canActivate: [AuthGuard] 
     },
     {
