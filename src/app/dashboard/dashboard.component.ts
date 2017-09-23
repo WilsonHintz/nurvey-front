@@ -104,8 +104,10 @@ export class DashboardComponent implements OnInit{
 
         var labelsGrafico = [];
         var seriesGrafico = [];
+
         this.resultadoService.getResultadosGeneral()
         .subscribe((resp) => {
+
           labelsGrafico.push(resp.labels)
           console.log(labelsGrafico)
           
