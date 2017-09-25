@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy  } from '@ang
 import { ActivatedRoute, Router,NavigationEnd } from '@angular/router'
 
 import * as Survey from 'survey-angular';
+import * as jquery from 'jquery';
+import 'bootstrap';
 
 import { SurveyService } from './../shared/services/survey.service';
 import { ClienteModelClass } from './../shared/models/ClienteModelClass';

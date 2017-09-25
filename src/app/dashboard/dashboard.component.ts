@@ -14,12 +14,16 @@ declare var seriesGrafico:any;
 
 export class DashboardComponent implements OnInit{
     resultadoService: ResultadoService;  
-    labelsGrafico = [];  
+    labelsGrafico = []; 
+    seriesGrafico = [];
 
     constructor(resultadoService: ResultadoService){
       this.resultadoService = resultadoService;
+      this.labelsGrafico = []; 
+      this.seriesGrafico = [];
   }
     ngOnInit(){
+       
         var dataSales = {
           labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
           series: [
@@ -105,13 +109,12 @@ export class DashboardComponent implements OnInit{
 
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
-         //labelsGrafico.array = [];
-         seriesGrafico = [];
+         //labelsGrafico = [];
+         //seriesGrafico = [];
         this.resultadoService.getResultadosGeneral()
         .subscribe((resp) => {
-
-          labelsGrafico.push(resp.labels)
-          console.log(labelsGrafico)
+          this.labelsGrafico.push(resp.labels)
+          console.log(this.labelsGrafico)
           
           Chartist.Pie('#chartPreferences', {
             labels: resp.labels,
