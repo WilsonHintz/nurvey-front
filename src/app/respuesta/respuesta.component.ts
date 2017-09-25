@@ -22,9 +22,10 @@ export class respuestaComponent implements OnInit, OnDestroy {
     surveyService: SurveyService;
     private surveyModel = new SurveyModelClass()
     encuestas: Array<EncuestaModelClass>
+    private respuesta: string;
 
-    constructor(private route: ActivatedRoute,SurveyService: SurveyService){
-        this.surveyService = SurveyService;
+    constructor(private route: ActivatedRoute,surveyService: SurveyService){
+        this.surveyService = surveyService;
     }
   
     ngOnInit() {
@@ -35,6 +36,7 @@ export class respuestaComponent implements OnInit, OnDestroy {
             this.encuestas = [];
             var parm: string;
             parm = this.id.toString()
+            var respuestaServicio = this.surveyService
             this.surveyService.getEncuestasById(parm)
             .subscribe((resp) => {
                 let u = resp;
@@ -59,15 +61,22 @@ export class respuestaComponent implements OnInit, OnDestroy {
                     salida.encuestado = {};
                     
                     salida.encuestado.tiempoRespuesta = "2017-09-23T00:28:00";
-                    salida.encuestado.ubicacion = "En mi casa haciendo tesis";
-                    
-                    console.log(JSON.stringify(salida)) 
-                    console.log(JSON.parse(salida)) 
-                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
+                    salida.encuestado.ubicacion = "mas duro que eia";
+                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(salida);
+                    // this.respuesta = JSON.stringify(salida);
+                    // console.log("respuesta ->" + this.respuesta)
+                    respuestaServicio.guardarRespuesta(salida)
+                    .subscribe(
+                        data => {
+                             alert("andoooo")
+                        },
+                        error => {
+                            alert("erroooooor")
+                        });
                     });
               });
-
-             
+             console.log("respuesta ->" + this.respuesta)
+            //  this.surveyService.guardarRespuesta()
             
          }
          else{

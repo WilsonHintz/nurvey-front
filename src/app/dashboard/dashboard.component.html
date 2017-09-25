@@ -2,7 +2,7 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6">
                 <div class="card">
-                    <div class="content">
+                    <div class="content"> 
                         <div class="row">
                             <div class="col-xs-5">
                                 <div class="icon-big icon-warning text-center">
@@ -112,8 +112,8 @@
                     <div class="content">
                         <div id="chartHours" class="ct-chart"></div>
                         <div class="footer">
-                            <div class="chart-legend" *ngFor="let u of labelsGrafico">
-                                {{u.labels}}
+                            <div class="chart-legend" >
+                                
                                 <i class="fa fa-circle text-info"></i> ABRIR
                                 <i class="fa fa-circle text-danger"></i> Click
                                 <i class="fa fa-circle text-warning"></i> Click Second Time
@@ -138,10 +138,16 @@
                         <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
                         <div class="footer">
-                            <div class="chart-legend">
-                                <i class="fa fa-circle text-info"></i> Open
+                            <div class="chart-legend" >
+                                <ul class="content table-responsive table-full-width">
+                                        <li *ngFor="let u of labelsGrafico" class="list-group-item">
+                                            {{u.labels}}
+                                            tuvieja
+                                        </li>
+                                    </ul>
+                                <!-- <i class="fa fa-circle text-info"></i> Open
                                 <i class="fa fa-circle text-danger"></i> Bounce
-                                <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                <i class="fa fa-circle text-warning"></i> Unsubscribe -->
                             </div>
                             <hr>
                             <div class="stats">

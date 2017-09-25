@@ -5,7 +5,7 @@ export class SurveyModelClass{
     idUsuario: number;
     tituloEncuesta: string;
 
-    constructor(){}
+    constructor(){} 
 
     public inicializate(definicion,idCategoriaEncuesta,idUsuario,tituloEncuesta){
         

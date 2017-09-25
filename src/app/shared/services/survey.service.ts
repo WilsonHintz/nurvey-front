@@ -11,24 +11,10 @@ const SERVER_REST_API_URL = "http://localhost:3000/surveys/";
 export class SurveyService {
 private http: Http;
 private serverRestAPIUrl: string;
-surveyFound: SurveyModelClass;
-salidaString: string;
-surveyObjet: Object;
-surveyDefinicion: string;
 
 constructor(http:Http) {
     this.http = http;
     this.serverRestAPIUrl = environment.apiEndPoint + "/api";
-}
-
-getSurveys(){
-    return this.http.get(SERVER_REST_API_URL)
-    .map(res => res.json());
-}
-
-getCategorias(){
-    return this.http.get(this.serverRestAPIUrl + "/Categoria")
-    .map(res => res.json());    
 }
 
 getEncuestas(){
@@ -41,11 +27,6 @@ getEncuestasById(id: string){
      .map(res => res.json());  
 }
 
-getClientesByFiltro(parm: String){
-    return this.http.get(this.serverRestAPIUrl + "/Cliente?filtro=" + parm)
-    .map(res => res.json());  
-}  
-
 saveSurvey(survey: SurveyModelClass) {
     
     interface surveyI {
@@ -54,17 +35,13 @@ saveSurvey(survey: SurveyModelClass) {
     }
 
     let surveyJson = JSON.stringify(survey)
-
     let objSurvey: surveyI = JSON.parse(surveyJson)
-
     var surveyModel = new SurveyModelClass()
 
     surveyModel.inicializate(surveyJson,1,1,objSurvey.title)
 
     let surveyJsonToPost = JSON.stringify(surveyModel)
-
-    console.log("SURVEY JSON TO POST "+surveyJsonToPost)
-
+    console.log(surveyJsonToPost)
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
     let options = new RequestOptions({
         method: 'POST',
@@ -76,23 +53,17 @@ saveSurvey(survey: SurveyModelClass) {
     return this.http.post(this.serverRestAPIUrl + "/Encuesta", surveyJsonToPost, options)
 }
 
-getSurveyById(surveyIdParm: Number) : string {
-    this.getSurveys()
-        .subscribe((resp) => {
-            for (let u of resp) {
-                
-                if (u.id === surveyIdParm) {
-                    this.surveyObjet = u
-                    console.log("surveyObject: "+this.surveyObjet)
-                    this.salidaString = JSON.stringify(this.surveyObjet)
-                    return this.salidaString;
-                }
-                else {
-                    this.salidaString = ""
-                }
-            }
-        })
-        return this.salidaString;
+guardarRespuesta(parm: any){
+    console.log("llega al servicio"+ parm)
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
+    let options = new RequestOptions({
+        method: 'POST',
+        url: this.serverRestAPIUrl + "/Respuestas",
+        headers: headers,
+        body: parm
+    });
+
+    return this.http.post(this.serverRestAPIUrl + "/Respuestaas", parm, options)
 }
 
 }
