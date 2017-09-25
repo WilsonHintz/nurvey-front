@@ -20,18 +20,20 @@ export class NavbarComponent implements OnInit{
     private toggleButton;
     private sidebarVisible: boolean;
     currentUser: UserModelClass;
+    public authenticationService: AuthenticationService;
     users: UserModelClass[] = [];
     model: any = {};
 
     @ViewChild("navbar-cmp") button;
 
     constructor(location:Location, private renderer : Renderer, 
-        private element : ElementRef, private userService: UserService, private authenticationService: AuthenticationService) {
+        private element : ElementRef, private userService: UserService, 
+        authenticationService: AuthenticationService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.authenticationService = this.authenticationService;
+        this.authenticationService = authenticationService;
     }
 
     ngOnInit(){
