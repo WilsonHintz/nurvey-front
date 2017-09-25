@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms'; 
 import { AlertService, AuthenticationService } from '../shared/services/index';
+import {EmailValidator} from '../register/validators'; 
  
 @Component({
     selector: 'login',
     moduleId: module.id,
-    templateUrl: 'login.html'
+    templateUrl: 'login.html',
+    styleUrls: ['./login.css']
+
 })
  
 export class LoginComponent implements OnInit {
-    // public form:FormGroup;
-    // public email:AbstractControl;
-    // public password:AbstractControl;
-    // public submitted:boolean = false;
+    public form:FormGroup;
+    public email:AbstractControl;
+    public password:AbstractControl;
+    public submitted:boolean = false;
     model: any = {};
     loading = false;
     returnUrl: string;
@@ -22,27 +25,27 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) 
+        private alertService: AlertService,
+        fb:FormBuilder) 
         {
-          // this.form = fb.group({
-          //   'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-          //   'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-          // });
+          this.form = fb.group({
+            'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
+            'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+          });
       
-          // this.email = this.form.controls['email'];
-          // this.password = this.form.controls['password'];
-          // this.router = this.router;
-          // this.route = this.route;
-          // this.authenticationService = this.authenticationService;
-          // this.alertService = this.alertService;
+          this.email = this.form.controls['email'];
+          this.password = this.form.controls['password'];
+          this.router = this.router;
+          this.route = this.route;
+          this.authenticationService = this.authenticationService;
+          this.alertService = this.alertService;
          }
  
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
- 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
  
     login() {

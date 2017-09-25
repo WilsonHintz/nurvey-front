@@ -35,20 +35,34 @@ export class respuestaComponent implements OnInit, OnDestroy {
             parm = this.id.toString()
             this.surveyService.getEncuestasById(parm)
             .subscribe((resp) => {
-                // for (let u of resp) {
-                //     this.encuestas.push(new EncuestaModelClass(u.idEncuesta, u.tituloEncuesta, u.definicion, u.idCategoriaEncuesta ,u.idUsuario));
-                //   }
                 let u = resp;
-                // this.surveyRender = JSON.parse(u.definicion)
-
-                console.log(u.definicionJSON)
                 const surveyModel = new Survey.ReactSurveyModel(u.definicionJSON);
                 Survey.SurveyNG.render('surveyElement', { model: surveyModel });
                 
                 surveyModel.onComplete.add(function(result) {
-                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
                     console.log(result.data)
-                    });  
+                    var item;
+                    var listaRespuestas = [];
+                    for (var type in result.data) {
+                        item = {};
+                        item.codigoPregunta = type;
+                        item.descripcionRespuesta = result.data[type];
+                        item.idEncuesta = parseInt(parm);
+                        listaRespuestas.push(item);
+                        // console.log(item);
+                    }
+                    var salida;
+                    salida = {};   
+                    salida.listaRespuestas = listaRespuestas; 
+                    salida.encuestado = {};
+                    
+                    salida.encuestado.tiempoRespuesta = "2017-09-23T00:28:00";
+                    salida.encuestado.ubicacion = "En mi casa haciendo tesis";
+                    
+                    console.log(JSON.stringify(salida)) 
+                    console.log(JSON.parse(salida)) 
+                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(result.data);
+                    });
               });
 
              

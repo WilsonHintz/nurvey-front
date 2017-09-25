@@ -22,14 +22,18 @@ export const AppRoutes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
     },
-    { path: 'home ', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent,
+     canActivate: [AuthGuard] 
+    },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]  
     },
     {
         path: 'user',
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'table',
@@ -53,7 +57,8 @@ export const AppRoutes: Routes = [
     },
     {
         path: 'editor',
-        component: SurveyEditorComponent
+        component: SurveyEditorComponent,
+        canActivate: [AuthGuard] 
     },
     {
         path: 'login',
@@ -64,12 +69,9 @@ export const AppRoutes: Routes = [
         component: RegisterComponent
     },
     {
-        path: 'home',
-        component: RegisterComponent
-    },
-    {
         path: 'misEncuestas',
-        component: misEncuestasComponent
+        component: misEncuestasComponent,
+        canActivate: [AuthGuard] 
     },
     {
         path: 'respuesta/:id',

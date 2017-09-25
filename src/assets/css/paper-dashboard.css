@@ -1079,8 +1079,7 @@ hr {
   box-shadow: none;
 }
 .has-success .form-control {
-  background-color: #ABF3CB;
-  color: #7AC29A;
+  border-color: #ABF3CB;
 }
 .has-success .form-control.border-input {
   border: 1px solid #7AC29A;
@@ -1089,8 +1088,7 @@ hr {
   background-color: #FFFFFF;
 }
 .has-error .form-control {
-  background-color: #FFC0A4;
-  color: #DD0330;
+  border-color: #FFC0A4;
 }
 .has-error .form-control.border-input {
   border: 1px solid #DD0330;
