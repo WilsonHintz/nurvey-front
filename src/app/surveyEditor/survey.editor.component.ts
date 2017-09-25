@@ -1,5 +1,6 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as SurveyEditor from 'surveyjs-editor';
 //import 'jquery';
 import * as jquery from 'jquery';
@@ -12,13 +13,15 @@ SurveyEditor.editorLocalization.currentLocale = "es";
 
 @Component({
     selector: 'editor',
-     template: `<div id="surveyEditorContainer"></div>`,
-     styleUrls: ['./survey.css'],    
+     templateUrl: './survey.editor.component.html',
+     styleUrls: ['./survey.css']  
 })
 export class SurveyEditorComponent  {
+    titulo: string;
     editor: SurveyEditor.SurveyEditor;
     surveyService: SurveyService;
     newSurvey: SurveyModelClass;
+    returnUrl: string;
     @Input() json: any;
     @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
@@ -27,9 +30,10 @@ export class SurveyEditorComponent  {
         this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
         this.editor.text = JSON.stringify(this.json);
         this.editor.saveSurveyFunc = this.saveMySurvey;
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/misEncuestas';
     }
 
-    constructor(surveyService: SurveyService) {
+    constructor(surveyService: SurveyService, private route: ActivatedRoute, private router: Router) {
         this.surveyService = surveyService;
     }
 
@@ -40,11 +44,26 @@ export class SurveyEditorComponent  {
        this.surveySaved.emit(JSON.parse(this.editor.text));
 
         this.newSurvey = JSON.parse(this.editor.text);
+        if(this.titulo === undefined){
+            
+        }
 
-        this.surveyService.saveSurvey(this.newSurvey)
-            .subscribe(() => {
+        if (this.titulo != undefined || this.titulo != null || this.titulo != ""){
+        this.surveyService.saveSurvey(this.newSurvey,this.titulo)
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
                 survey => this.newSurvey
                 this.surveySaved.emit({Survey: this.newSurvey});
-            })
+                alert("Su encuesta se ha guardada satisfactoriamente.")
+                this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    
+                });
+        }
+        else{
+            alert("Debe ingresar un titulo a la encuesta.");
+        }
     }
 }

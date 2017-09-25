@@ -27,7 +27,7 @@ getEncuestasById(id: string){
      .map(res => res.json());  
 }
 
-saveSurvey(survey: SurveyModelClass) {
+saveSurvey(survey: SurveyModelClass, tituloParm:string) {
     
     interface surveyI {
         title: string;
@@ -38,7 +38,7 @@ saveSurvey(survey: SurveyModelClass) {
     let objSurvey: surveyI = JSON.parse(surveyJson)
     var surveyModel = new SurveyModelClass()
 
-    surveyModel.inicializate(surveyJson,1,1,objSurvey.title)
+    surveyModel.inicializate(surveyJson,1,1,tituloParm)
 
     let surveyJsonToPost = JSON.stringify(surveyModel)
     console.log(surveyJsonToPost)
