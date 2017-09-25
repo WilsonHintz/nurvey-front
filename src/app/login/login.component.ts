@@ -6,7 +6,7 @@ import {EmailValidator} from '../register/validators';
  
 @Component({
     selector: 'login',
-    moduleId: module.id,
+    //moduleId: module.id,
     templateUrl: 'login.html',
     styleUrls: ['./login.css']
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     public form:FormGroup;
     public email:AbstractControl;
     public password:AbstractControl;
-    public submitted:boolean = false;
+
     model: any = {};
     loading = false;
     returnUrl: string;
@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
       
           this.email = this.form.controls['email'];
           this.password = this.form.controls['password'];
-          this.router = this.router;
-          this.route = this.route;
-          this.authenticationService = this.authenticationService;
-          this.alertService = this.alertService;
+          // this.router = this.router;
+          // this.route = this.route;
+          // this.authenticationService = this.authenticationService;
+          // this.alertService = this.alertService;
          }
  
     ngOnInit() {
