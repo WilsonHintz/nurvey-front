@@ -3,6 +3,8 @@ import { ResultadoService } from '../shared/services/resultados.service';
 import * as Chartist from 'chartist';
 
 declare var $:any;
+declare var labelsGrafico:any;
+declare var seriesGrafico:any;
 
 @Component({
     selector: 'dashboard-cmp',
@@ -11,7 +13,8 @@ declare var $:any;
 })
 
 export class DashboardComponent implements OnInit{
-    resultadoService: ResultadoService;
+    resultadoService: ResultadoService;  
+    labelsGrafico = [];  
 
     constructor(resultadoService: ResultadoService){
       this.resultadoService = resultadoService;
@@ -102,8 +105,8 @@ export class DashboardComponent implements OnInit{
 
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
-        var labelsGrafico = [];
-        var seriesGrafico = [];
+         //labelsGrafico.array = [];
+         seriesGrafico = [];
         this.resultadoService.getResultadosGeneral()
         .subscribe((resp) => {
           labelsGrafico.push(resp.labels)

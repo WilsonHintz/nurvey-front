@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit{
     @ViewChild("navbar-cmp") button;
 
     constructor(location:Location, private renderer : Renderer, 
-        private element : ElementRef, private userService: UserService, private authenticationService: AuthenticationService) {
+        private element : ElementRef, private userService: UserService, public authenticationService: AuthenticationService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
