@@ -1,7 +1,7 @@
 export class EncuestaModelClass{
     idEncuesta: number;
     tituloEncuesta: string;
-    definicion: string;
+    definicionJSON: string;
     idCategoriaEncuesta: number;
     idUsuario: number;
 
@@ -9,7 +9,7 @@ export class EncuestaModelClass{
     constructor(idEncuesta,tituloEncuesta,definicionJSON,idCategoriaEncuesta,idUsuario){
         this.idEncuesta = idEncuesta;
         this.tituloEncuesta = tituloEncuesta;
-        this.definicion = definicionJSON;
+        this.definicionJSON = definicionJSON;
         this.idCategoriaEncuesta = idCategoriaEncuesta;
         this.idUsuario = idUsuario;
     }
