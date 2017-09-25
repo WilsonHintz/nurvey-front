@@ -1,7 +1,8 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as SurveyEditor from 'surveyjs-editor';
-import 'jquery';
+//import 'jquery';
+import * as jquery from 'jquery';
 import 'bootstrap';
 
 import { SurveyService } from '../shared/services/survey.service';
@@ -12,8 +13,7 @@ SurveyEditor.editorLocalization.currentLocale = "es";
 @Component({
     selector: 'editor',
      template: `<div id="surveyEditorContainer"></div>`,
-     styleUrls: ['./survey.css'],
-    
+     styleUrls: ['./survey.css'],    
 })
 export class SurveyEditorComponent  {
     editor: SurveyEditor.SurveyEditor;
@@ -47,5 +47,4 @@ export class SurveyEditorComponent  {
                 this.surveySaved.emit({Survey: this.newSurvey});
             })
     }
-
 }

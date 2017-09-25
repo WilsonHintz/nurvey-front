@@ -1,15 +1,15 @@
 export class EncuestaModelClass{
     idEncuesta: number;
     tituloEncuesta: string;
-    definicion: string;
+    definicionJSON: string;
     idCategoriaEncuesta: number;
     idUsuario: number;
 
 
-    constructor(idEncuesta,tituloEncuesta,definicion,idCategoriaEncuesta,idUsuario){
+    constructor(idEncuesta,tituloEncuesta,definicionJSON,idCategoriaEncuesta,idUsuario){
         this.idEncuesta = idEncuesta;
         this.tituloEncuesta = tituloEncuesta;
-        this.definicion = definicion;
+        this.definicionJSON = definicionJSON;
         this.idCategoriaEncuesta = idCategoriaEncuesta;
         this.idUsuario = idUsuario;
     }

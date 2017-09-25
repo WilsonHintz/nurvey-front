@@ -5,11 +5,11 @@ import { UserService } from '../shared/services/index';
 
 @Component({
     selector: 'home',
-    moduleId: module.id,
+    //moduleId: module.id,
     templateUrl: 'home.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent {
     currentUser: UserModelClass;
     users: UserModelClass[] = [];
 

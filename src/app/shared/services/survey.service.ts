@@ -14,6 +14,7 @@ private serverRestAPIUrl: string;
 surveyFound: SurveyModelClass;
 salidaString: string;
 surveyObjet: Object;
+surveyDefinicion: string;
 
 constructor(http:Http) {
     this.http = http;
@@ -33,6 +34,11 @@ getCategorias(){
 getEncuestas(){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta")
     .map(res => res.json());    
+}
+
+getEncuestasById(id: string){
+     return this.http.get(this.serverRestAPIUrl + "/Encuesta?idEncuesta=" + id)
+     .map(res => res.json());  
 }
 
 getClientesByFiltro(parm: String){
