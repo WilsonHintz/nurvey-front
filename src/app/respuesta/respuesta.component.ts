@@ -60,18 +60,18 @@ export class respuestaComponent implements OnInit, OnDestroy {
                     salida.listaRespuestas = listaRespuestas; 
                     salida.encuestado = {};
                     
-                    salida.encuestado.tiempoRespuesta = "2017-09-23T00:28:00";
-                    salida.encuestado.ubicacion = "mas duro que eia";
-                    document.querySelector('#surveyResult').innerHTML = "result: " + JSON.stringify(salida);
+                    salida.encuestado.tiempoRespuesta = "2017-09-26T00:00:50";
+                    salida.encuestado.ubicacion = "UTN-FRC";
+                
                     // this.respuesta = JSON.stringify(salida);
                     // console.log("respuesta ->" + this.respuesta)
                     respuestaServicio.guardarRespuesta(salida)
                     .subscribe(
                         data => {
-                             alert("andoooo")
+                             
                         },
                         error => {
-                            alert("erroooooor")
+                            
                         });
                     });
               });

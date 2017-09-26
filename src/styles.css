@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+.myclass1 {
+  stroke: #9BE277;
+  fill: #9BE277;
+  color: #9BE277;
+}
+
+.myclass2 {
+  stroke: #0F3;
+  fill: #0F3;
+  color: #0F3;
+}
+
+.myclass3 {
+  stroke: #D70505;
+  fill: #D70505;
+  color: #D70505;
+}
+
+.myclass4 {
+    stroke: #71727C;
+  fill: #71727C;
+  color: #71727C;
+}
+
+.myclass5 {
+  stroke: #BD6262;
+  fill: #BD6262;
+  color: #BD6262;
+}
