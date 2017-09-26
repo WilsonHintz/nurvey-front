@@ -23,3 +23,7 @@
      background-color: #fff;
  }
  
+
+.svd_properties {
+    visibility: hidden;
+}
