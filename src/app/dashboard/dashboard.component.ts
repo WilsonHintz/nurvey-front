@@ -14,6 +14,7 @@ declare var seriesGrafico:any;
 
 export class DashboardComponent implements OnInit{
     resultadoService: ResultadoService;  
+    nombreGrafico: string;
     labelsGrafico = []; 
     seriesGrafico = [];
 
@@ -107,17 +108,21 @@ export class DashboardComponent implements OnInit{
             }
         };
 
-        Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
+        //Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
          //labelsGrafico = [];
          //seriesGrafico = [];
-        this.resultadoService.getResultadosGeneral()
+        this.resultadoService.getResultadosGeneral("EXPOSICION_POSTER",59)
         .subscribe((resp) => {
-          this.labelsGrafico.push(resp.labels)
+          this.labelsGrafico.push(resp.labels);
+          resp.series.forEach(serie => {
+            this.seriesGrafico.push(serie + "%");
+          });
+
           console.log(this.labelsGrafico)
           
           Chartist.Pie('#chartPreferences', {
-            labels: resp.labels,
+            labels: this.seriesGrafico,
             series: resp.series
           });
           
