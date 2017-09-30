@@ -1,0 +1,1481 @@
+[
+  {
+    "name": "NguiMapModule",
+    "file": "map/src/ngui-map.module.ts",
+    "providers": [
+      {
+        "name": "GeoCoder"
+      },
+      {
+        "name": "NavigatorGeolocation"
+      },
+      {
+        "name": "NguiMap"
+      },
+      {
+        "name": "OptionBuilder"
+      },
+      {
+        "name": "{ provide: NgMapApiLoader, useClass: NgMapAsyncCallbackApiLoader }"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "COMPONENTS_DIRECTIVES"
+      }
+    ],
+    "imports": [
+      {
+        "name": "CommonModule"
+      }
+    ],
+    "exports": [
+      {
+        "name": "COMPONENTS_DIRECTIVES"
+      }
+    ],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 1872,
+        "end": 1900,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 1872,
+          "end": 1882,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 1883,
+          "end": 1900,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 1885,
+              "end": 1898,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1901,
+        "end": 1939,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 1901,
+          "end": 1916,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 1917,
+          "end": 1939,
+          "flags": 0,
+          "escapedText": "COMPONENTS_DIRECTIVES"
+        }
+      },
+      {
+        "pos": 1940,
+        "end": 1975,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 1940,
+          "end": 1950,
+          "flags": 0,
+          "escapedText": "exports"
+        },
+        "initializer": {
+          "pos": 1951,
+          "end": 1975,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 1953,
+              "end": 1974,
+              "flags": 0,
+              "escapedText": "COMPONENTS_DIRECTIVES"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1976,
+        "end": 2137,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 1976,
+          "end": 1988,
+          "flags": 0,
+          "escapedText": "providers"
+        },
+        "initializer": {
+          "pos": 1989,
+          "end": 2137,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1991,
+              "end": 2004,
+              "flags": 0,
+              "escapedText": "GeoCoder"
+            },
+            {
+              "pos": 2005,
+              "end": 2030,
+              "flags": 0,
+              "escapedText": "NavigatorGeolocation"
+            },
+            {
+              "pos": 2031,
+              "end": 2043,
+              "flags": 0,
+              "escapedText": "NguiMap"
+            },
+            {
+              "pos": 2044,
+              "end": 2062,
+              "flags": 0,
+              "escapedText": "OptionBuilder"
+            },
+            {
+              "pos": 2063,
+              "end": 2132,
+              "flags": 0,
+              "kind": 178,
+              "properties": [
+                {
+                  "pos": 2069,
+                  "end": 2092,
+                  "flags": 0,
+                  "kind": 261,
+                  "name": {
+                    "pos": 2069,
+                    "end": 2076,
+                    "flags": 0,
+                    "escapedText": "provide"
+                  },
+                  "initializer": {
+                    "pos": 2077,
+                    "end": 2092,
+                    "flags": 0,
+                    "escapedText": "NgMapApiLoader"
+                  }
+                },
+                {
+                  "pos": 2093,
+                  "end": 2131,
+                  "flags": 0,
+                  "kind": 261,
+                  "name": {
+                    "pos": 2093,
+                    "end": 2102,
+                    "flags": 0,
+                    "escapedText": "useClass"
+                  },
+                  "initializer": {
+                    "pos": 2103,
+                    "end": 2131,
+                    "flags": 0,
+                    "escapedText": "NgMapAsyncCallbackApiLoader"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "AppModule",
+    "file": "src/app/app.module.ts",
+    "providers": [
+      {
+        "name": "SurveyService"
+      },
+      {
+        "name": "ResultadoService"
+      },
+      {
+        "name": "AuthGuard"
+      },
+      {
+        "name": "AlertService"
+      },
+      {
+        "name": "AuthenticationService"
+      },
+      {
+        "name": "UserService"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "AppComponent",
+        "file": "src/app/app.component.ts",
+        "selector": "app-root",
+        "providers": [],
+        "templateUrl": [
+          "app.component.html"
+        ],
+        "styleUrls": [
+          "app.component.css"
+        ],
+        "__raw": [
+          {
+            "pos": 112,
+            "end": 135,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 112,
+              "end": 123,
+              "flags": 0,
+              "escapedText": "selector"
+            },
+            "initializer": {
+              "pos": 124,
+              "end": 135,
+              "flags": 0,
+              "kind": 9,
+              "text": "app-root"
+            }
+          },
+          {
+            "pos": 136,
+            "end": 174,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 136,
+              "end": 150,
+              "flags": 0,
+              "escapedText": "templateUrl"
+            },
+            "initializer": {
+              "pos": 151,
+              "end": 174,
+              "flags": 0,
+              "kind": 9,
+              "text": "./app.component.html"
+            }
+          },
+          {
+            "pos": 175,
+            "end": 212,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 175,
+              "end": 187,
+              "flags": 0,
+              "escapedText": "styleUrls"
+            },
+            "initializer": {
+              "pos": 188,
+              "end": 212,
+              "flags": 0,
+              "kind": 177,
+              "elements": [
+                {
+                  "pos": 190,
+                  "end": 211,
+                  "flags": 0,
+                  "kind": 9,
+                  "text": "./app.component.css"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DashboardComponent"
+      },
+      {
+        "name": "UserComponent"
+      },
+      {
+        "name": "TableComponent"
+      },
+      {
+        "name": "TypographyComponent"
+      },
+      {
+        "name": "IconsComponent"
+      },
+      {
+        "name": "MapsComponent"
+      },
+      {
+        "name": "NotificationsComponent"
+      },
+      {
+        "name": "UpgradeComponent"
+      },
+      {
+        "name": "LoginComponent"
+      },
+      {
+        "name": "RegisterComponent"
+      },
+      {
+        "name": "SurveyEditorComponent"
+      },
+      {
+        "name": "misEncuestasComponent"
+      },
+      {
+        "name": "respuestaComponent"
+      },
+      {
+        "name": "HomeComponent"
+      },
+      {
+        "name": "AlertComponent"
+      }
+    ],
+    "imports": [
+      {
+        "name": "BrowserModule"
+      },
+      {
+        "ns": "RouterModule",
+        "name": "RouterModule.forRoot(args)"
+      },
+      {
+        "name": "SidebarModule"
+      },
+      {
+        "name": "NavbarModule"
+      },
+      {
+        "name": "HttpModule"
+      },
+      {
+        "name": "FormsModule"
+      },
+      {
+        "name": "ReactiveFormsModule"
+      },
+      {
+        "ns": "NguiMapModule",
+        "name": "NguiMapModule.forRoot(args)"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [
+      {
+        "name": "AppComponent"
+      }
+    ],
+    "__raw": [
+      {
+        "pos": 1929,
+        "end": 2305,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 1929,
+          "end": 1944,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 1945,
+          "end": 2305,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1947,
+              "end": 1964,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            },
+            {
+              "pos": 1965,
+              "end": 1988,
+              "flags": 0,
+              "escapedText": "DashboardComponent"
+            },
+            {
+              "pos": 1989,
+              "end": 2007,
+              "flags": 0,
+              "escapedText": "UserComponent"
+            },
+            {
+              "pos": 2008,
+              "end": 2027,
+              "flags": 0,
+              "escapedText": "TableComponent"
+            },
+            {
+              "pos": 2028,
+              "end": 2052,
+              "flags": 0,
+              "escapedText": "TypographyComponent"
+            },
+            {
+              "pos": 2053,
+              "end": 2072,
+              "flags": 0,
+              "escapedText": "IconsComponent"
+            },
+            {
+              "pos": 2073,
+              "end": 2091,
+              "flags": 0,
+              "escapedText": "MapsComponent"
+            },
+            {
+              "pos": 2092,
+              "end": 2119,
+              "flags": 0,
+              "escapedText": "NotificationsComponent"
+            },
+            {
+              "pos": 2120,
+              "end": 2141,
+              "flags": 0,
+              "escapedText": "UpgradeComponent"
+            },
+            {
+              "pos": 2142,
+              "end": 2161,
+              "flags": 0,
+              "escapedText": "LoginComponent"
+            },
+            {
+              "pos": 2162,
+              "end": 2184,
+              "flags": 0,
+              "escapedText": "RegisterComponent"
+            },
+            {
+              "pos": 2185,
+              "end": 2211,
+              "flags": 0,
+              "escapedText": "SurveyEditorComponent"
+            },
+            {
+              "pos": 2212,
+              "end": 2238,
+              "flags": 0,
+              "escapedText": "misEncuestasComponent"
+            },
+            {
+              "pos": 2239,
+              "end": 2262,
+              "flags": 0,
+              "escapedText": "respuestaComponent"
+            },
+            {
+              "pos": 2263,
+              "end": 2281,
+              "flags": 0,
+              "escapedText": "HomeComponent"
+            },
+            {
+              "pos": 2282,
+              "end": 2301,
+              "flags": 0,
+              "escapedText": "AlertComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2306,
+        "end": 2615,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 2306,
+          "end": 2316,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 2317,
+          "end": 2615,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 2319,
+              "end": 2337,
+              "flags": 0,
+              "escapedText": "BrowserModule"
+            },
+            {
+              "pos": 2338,
+              "end": 2374,
+              "flags": 0,
+              "kind": 181,
+              "expression": {
+                "pos": 2338,
+                "end": 2363,
+                "flags": 0,
+                "kind": 179,
+                "expression": {
+                  "pos": 2338,
+                  "end": 2355,
+                  "flags": 0,
+                  "escapedText": "RouterModule"
+                },
+                "name": {
+                  "pos": 2356,
+                  "end": 2363,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": [
+                {
+                  "pos": 2364,
+                  "end": 2373,
+                  "flags": 0,
+                  "escapedText": "AppRoutes"
+                }
+              ]
+            },
+            {
+              "pos": 2375,
+              "end": 2393,
+              "flags": 0,
+              "escapedText": "SidebarModule"
+            },
+            {
+              "pos": 2394,
+              "end": 2411,
+              "flags": 0,
+              "escapedText": "NavbarModule"
+            },
+            {
+              "pos": 2412,
+              "end": 2447,
+              "flags": 0,
+              "escapedText": "HttpModule"
+            },
+            {
+              "pos": 2448,
+              "end": 2465,
+              "flags": 0,
+              "escapedText": "FormsModule"
+            },
+            {
+              "pos": 2466,
+              "end": 2490,
+              "flags": 0,
+              "escapedText": "ReactiveFormsModule"
+            },
+            {
+              "pos": 2491,
+              "end": 2610,
+              "flags": 0,
+              "kind": 181,
+              "expression": {
+                "pos": 2491,
+                "end": 2517,
+                "flags": 0,
+                "kind": 179,
+                "expression": {
+                  "pos": 2491,
+                  "end": 2509,
+                  "flags": 0,
+                  "escapedText": "NguiMapModule"
+                },
+                "name": {
+                  "pos": 2510,
+                  "end": 2517,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": [
+                {
+                  "pos": 2518,
+                  "end": 2609,
+                  "flags": 0,
+                  "kind": 178,
+                  "properties": [
+                    {
+                      "pos": 2519,
+                      "end": 2608,
+                      "flags": 0,
+                      "kind": 261,
+                      "name": {
+                        "pos": 2519,
+                        "end": 2525,
+                        "flags": 0,
+                        "escapedText": "apiUrl"
+                      },
+                      "initializer": {
+                        "pos": 2526,
+                        "end": 2608,
+                        "flags": 0,
+                        "kind": 9,
+                        "text": "https://maps.google.com/maps/api/js?key=AIzaSyBr-tgUtpm8cyjYVQDrjs8YpZH7zBNWPuY"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2616,
+        "end": 2778,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 2616,
+          "end": 2628,
+          "flags": 0,
+          "escapedText": "providers"
+        },
+        "initializer": {
+          "pos": 2629,
+          "end": 2778,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 2631,
+              "end": 2649,
+              "flags": 0,
+              "escapedText": "SurveyService"
+            },
+            {
+              "pos": 2650,
+              "end": 2697,
+              "flags": 0,
+              "escapedText": "ResultadoService"
+            },
+            {
+              "pos": 2698,
+              "end": 2712,
+              "flags": 0,
+              "escapedText": "AuthGuard"
+            },
+            {
+              "pos": 2713,
+              "end": 2730,
+              "flags": 0,
+              "escapedText": "AlertService"
+            },
+            {
+              "pos": 2731,
+              "end": 2757,
+              "flags": 0,
+              "escapedText": "AuthenticationService"
+            },
+            {
+              "pos": 2758,
+              "end": 2774,
+              "flags": 0,
+              "escapedText": "UserService"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2779,
+        "end": 2807,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 2779,
+          "end": 2791,
+          "flags": 0,
+          "escapedText": "bootstrap"
+        },
+        "initializer": {
+          "pos": 2792,
+          "end": 2807,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 2794,
+              "end": 2806,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "LoginModule",
+    "file": "app/login/login.module.ts",
+    "providers": [],
+    "declarations": [],
+    "imports": [
+      {
+        "name": "CommonModule"
+      },
+      {
+        "name": "ReactiveFormsModule"
+      },
+      {
+        "name": "FormsModule"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 357,
+        "end": 461,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 357,
+          "end": 367,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 368,
+          "end": 461,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 370,
+              "end": 387,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            },
+            {
+              "pos": 388,
+              "end": 440,
+              "flags": 0,
+              "escapedText": "ReactiveFormsModule"
+            },
+            {
+              "pos": 441,
+              "end": 457,
+              "flags": 0,
+              "escapedText": "FormsModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 462,
+        "end": 505,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 462,
+          "end": 477,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 478,
+          "end": 505,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": []
+        }
+      }
+    ]
+  },
+  {
+    "name": "RegisterModule",
+    "file": "app/register/register.module.ts",
+    "providers": [],
+    "declarations": [],
+    "imports": [
+      {
+        "name": "CommonModule"
+      },
+      {
+        "name": "ReactiveFormsModule"
+      },
+      {
+        "name": "FormsModule"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 281,
+        "end": 373,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 281,
+          "end": 291,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 292,
+          "end": 373,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 294,
+              "end": 311,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            },
+            {
+              "pos": 312,
+              "end": 336,
+              "flags": 0,
+              "escapedText": "ReactiveFormsModule"
+            },
+            {
+              "pos": 337,
+              "end": 353,
+              "flags": 0,
+              "escapedText": "FormsModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 374,
+        "end": 420,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 374,
+          "end": 389,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 390,
+          "end": 420,
+          "flags": 0,
+          "kind": 177,
+          "multiLine": true,
+          "elements": []
+        }
+      }
+    ]
+  },
+  {
+    "name": "FooterModule",
+    "file": "shared/footer/footer.module.ts",
+    "providers": [],
+    "declarations": [
+      {
+        "name": "FooterComponent",
+        "file": "shared/footer/footer.component.ts",
+        "selector": "footer-cmp",
+        "providers": [],
+        "templateUrl": [
+          "footer.component.html"
+        ],
+        "styleUrls": [],
+        "__raw": [
+          {
+            "pos": 69,
+            "end": 93,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 69,
+              "end": 82,
+              "flags": 0,
+              "escapedText": "moduleId"
+            },
+            "initializer": {
+              "pos": 83,
+              "end": 93,
+              "flags": 0,
+              "kind": 179,
+              "expression": {
+                "pos": 83,
+                "end": 90,
+                "flags": 0,
+                "originalKeywordKind": 128,
+                "escapedText": "module"
+              },
+              "name": {
+                "pos": 91,
+                "end": 93,
+                "flags": 0,
+                "escapedText": "id"
+              }
+            }
+          },
+          {
+            "pos": 94,
+            "end": 121,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 94,
+              "end": 107,
+              "flags": 0,
+              "escapedText": "selector"
+            },
+            "initializer": {
+              "pos": 108,
+              "end": 121,
+              "flags": 0,
+              "kind": 9,
+              "text": "footer-cmp"
+            }
+          },
+          {
+            "pos": 122,
+            "end": 163,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 122,
+              "end": 138,
+              "flags": 0,
+              "escapedText": "templateUrl"
+            },
+            "initializer": {
+              "pos": 139,
+              "end": 163,
+              "flags": 0,
+              "kind": 9,
+              "text": "footer.component.html"
+            }
+          }
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "name": "RouterModule"
+      },
+      {
+        "name": "CommonModule"
+      }
+    ],
+    "exports": [
+      {
+        "name": "FooterComponent"
+      }
+    ],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 204,
+        "end": 248,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 204,
+          "end": 216,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 217,
+          "end": 248,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 219,
+              "end": 232,
+              "flags": 0,
+              "escapedText": "RouterModule"
+            },
+            {
+              "pos": 233,
+              "end": 246,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 249,
+        "end": 287,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 249,
+          "end": 266,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 267,
+          "end": 287,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 269,
+              "end": 285,
+              "flags": 0,
+              "escapedText": "FooterComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 288,
+        "end": 321,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 288,
+          "end": 300,
+          "flags": 0,
+          "escapedText": "exports"
+        },
+        "initializer": {
+          "pos": 301,
+          "end": 321,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 303,
+              "end": 319,
+              "flags": 0,
+              "escapedText": "FooterComponent"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "NavbarModule",
+    "file": "shared/navbar/navbar.module.ts",
+    "providers": [],
+    "declarations": [
+      {
+        "name": "NavbarComponent",
+        "file": "shared/navbar/navbar.component.ts",
+        "selector": "navbar-cmp",
+        "providers": [],
+        "templateUrl": [
+          "navbar.component.html"
+        ],
+        "styleUrls": [
+          "navbar.css"
+        ],
+        "__raw": [
+          {
+            "pos": 480,
+            "end": 504,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 480,
+              "end": 493,
+              "flags": 0,
+              "escapedText": "moduleId"
+            },
+            "initializer": {
+              "pos": 494,
+              "end": 504,
+              "flags": 0,
+              "kind": 179,
+              "expression": {
+                "pos": 494,
+                "end": 501,
+                "flags": 0,
+                "originalKeywordKind": 128,
+                "escapedText": "module"
+              },
+              "name": {
+                "pos": 502,
+                "end": 504,
+                "flags": 0,
+                "escapedText": "id"
+              }
+            }
+          },
+          {
+            "pos": 505,
+            "end": 532,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 505,
+              "end": 518,
+              "flags": 0,
+              "escapedText": "selector"
+            },
+            "initializer": {
+              "pos": 519,
+              "end": 532,
+              "flags": 0,
+              "kind": 9,
+              "text": "navbar-cmp"
+            }
+          },
+          {
+            "pos": 533,
+            "end": 574,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 533,
+              "end": 549,
+              "flags": 0,
+              "escapedText": "templateUrl"
+            },
+            "initializer": {
+              "pos": 550,
+              "end": 574,
+              "flags": 0,
+              "kind": 9,
+              "text": "navbar.component.html"
+            }
+          },
+          {
+            "pos": 575,
+            "end": 607,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 575,
+              "end": 589,
+              "flags": 0,
+              "escapedText": "styleUrls"
+            },
+            "initializer": {
+              "pos": 590,
+              "end": 607,
+              "flags": 0,
+              "kind": 177,
+              "elements": [
+                {
+                  "pos": 592,
+                  "end": 606,
+                  "flags": 0,
+                  "kind": 9,
+                  "text": "./navbar.css"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "name": "RouterModule"
+      },
+      {
+        "name": "CommonModule"
+      }
+    ],
+    "exports": [
+      {
+        "name": "NavbarComponent"
+      }
+    ],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 204,
+        "end": 248,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 204,
+          "end": 216,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 217,
+          "end": 248,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 219,
+              "end": 232,
+              "flags": 0,
+              "escapedText": "RouterModule"
+            },
+            {
+              "pos": 233,
+              "end": 246,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 249,
+        "end": 287,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 249,
+          "end": 266,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 267,
+          "end": 287,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 269,
+              "end": 285,
+              "flags": 0,
+              "escapedText": "NavbarComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 288,
+        "end": 321,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 288,
+          "end": 300,
+          "flags": 0,
+          "escapedText": "exports"
+        },
+        "initializer": {
+          "pos": 301,
+          "end": 321,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 303,
+              "end": 319,
+              "flags": 0,
+              "escapedText": "NavbarComponent"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "SidebarModule",
+    "file": "app/sidebar/sidebar.module.ts",
+    "providers": [],
+    "declarations": [
+      {
+        "name": "SidebarComponent",
+        "file": "app/sidebar/sidebar.component.ts",
+        "selector": "sidebar-cmp",
+        "providers": [],
+        "templateUrl": [
+          "sidebar.component.html"
+        ],
+        "styleUrls": [],
+        "__raw": [
+          {
+            "pos": 1275,
+            "end": 1299,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 1275,
+              "end": 1288,
+              "flags": 0,
+              "escapedText": "moduleId"
+            },
+            "initializer": {
+              "pos": 1289,
+              "end": 1299,
+              "flags": 0,
+              "kind": 179,
+              "expression": {
+                "pos": 1289,
+                "end": 1296,
+                "flags": 0,
+                "originalKeywordKind": 128,
+                "escapedText": "module"
+              },
+              "name": {
+                "pos": 1297,
+                "end": 1299,
+                "flags": 0,
+                "escapedText": "id"
+              }
+            }
+          },
+          {
+            "pos": 1300,
+            "end": 1328,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 1300,
+              "end": 1313,
+              "flags": 0,
+              "escapedText": "selector"
+            },
+            "initializer": {
+              "pos": 1314,
+              "end": 1328,
+              "flags": 0,
+              "kind": 9,
+              "text": "sidebar-cmp"
+            }
+          },
+          {
+            "pos": 1329,
+            "end": 1371,
+            "flags": 0,
+            "kind": 261,
+            "name": {
+              "pos": 1329,
+              "end": 1345,
+              "flags": 0,
+              "escapedText": "templateUrl"
+            },
+            "initializer": {
+              "pos": 1346,
+              "end": 1371,
+              "flags": 0,
+              "kind": 9,
+              "text": "sidebar.component.html"
+            }
+          }
+        ]
+      }
+    ],
+    "imports": [
+      {
+        "name": "RouterModule"
+      },
+      {
+        "name": "CommonModule"
+      }
+    ],
+    "exports": [
+      {
+        "name": "SidebarComponent"
+      }
+    ],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 206,
+        "end": 250,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 206,
+          "end": 218,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 219,
+          "end": 250,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 221,
+              "end": 234,
+              "flags": 0,
+              "escapedText": "RouterModule"
+            },
+            {
+              "pos": 235,
+              "end": 248,
+              "flags": 0,
+              "escapedText": "CommonModule"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 251,
+        "end": 290,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 251,
+          "end": 268,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 269,
+          "end": 290,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 271,
+              "end": 288,
+              "flags": 0,
+              "escapedText": "SidebarComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 291,
+        "end": 325,
+        "flags": 0,
+        "kind": 261,
+        "name": {
+          "pos": 291,
+          "end": 303,
+          "flags": 0,
+          "escapedText": "exports"
+        },
+        "initializer": {
+          "pos": 304,
+          "end": 325,
+          "flags": 0,
+          "kind": 177,
+          "elements": [
+            {
+              "pos": 306,
+              "end": 323,
+              "flags": 0,
+              "escapedText": "SidebarComponent"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
