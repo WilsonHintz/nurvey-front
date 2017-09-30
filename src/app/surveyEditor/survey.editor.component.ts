@@ -10,7 +10,10 @@ import { SurveyService } from '../shared/services/survey.service';
 import { SurveyModelClass } from '../shared/models/SurveyModelClass';
 
 SurveyEditor.editorLocalization.currentLocale = "es";
-
+/**
+ * Componente principal del editor de encuestas basado en SurveyJS.
+ *     En el se pueden crear las encuestas y colocar las preguntas.
+ */
 @Component({
     selector: 'editor',
      templateUrl: './survey.editor.component.html',
@@ -25,6 +28,9 @@ export class SurveyEditorComponent  {
     @Input() json: any;
     @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
+    /**
+     * Metodo de inicio del componente
+     */
     ngOnInit() {
         let editorOptions = { showEmbededSurveyTab: false, generateValidJSON : true, showJSONEditorTab: false};
         this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
