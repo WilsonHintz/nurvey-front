@@ -1,30 +1,44 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { SurveyModelClass } from '../models/SurveyModelClass';
+import { EncuestaModelClass } from '../models/EncuestaModelClass';
 import { environment } from '../../../environments/environment'
 
-import 'rxjs';
+import 'rxjs/add/operator/map';
 
 const SERVER_REST_API_URL = "http://localhost:3000/surveys/";
 
 @Injectable()
 export class SurveyService {
-private http: Http;
 private serverRestAPIUrl: string;
+encuestas:any [] = [];
 
-constructor(http:Http) {
-    this.http = http;
+constructor( private http:Http) {
     this.serverRestAPIUrl = environment.apiEndPoint + "/api";
 }
 
 getEncuestas(){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta")
-    .map(res => res.json());    
+        .map(resp => {
+            for (let u of resp.json()) {
+              this.encuestas.push(new EncuestaModelClass(
+                  u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario)
+                );
+            }
+          });
+}
+
+getEncuestaByName(termino){
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
+    .map(res =>{
+        this.encuestas = res.json();
+    }
+);
 }
 
 getEncuestasById(id: string){
      return this.http.get(this.serverRestAPIUrl + "/Encuesta?idEncuesta=" + id)
-     .map(res => res.json());  
+     .map(res => res.json());
 }
 
 saveSurvey(survey: SurveyModelClass, tituloParm:string) {

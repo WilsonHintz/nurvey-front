@@ -17,6 +17,8 @@ export class misEncuestasComponent implements OnInit {
     activeEncuesta;
     surveyService: SurveyService;
 
+    termino:string ="";
+
     constructor(SurveyService: SurveyService){
         this.surveyService = SurveyService;
     }
@@ -26,16 +28,14 @@ export class misEncuestasComponent implements OnInit {
         this.loadEncuestas();
     }
 
+    buscarEncuestas(){
+        this.surveyService.getEncuestaByName(this.termino)
+        .subscribe();
+    }
+
     loadEncuestas(){
-
-        this.encuestas = [];
         this.surveyService.getEncuestas()
-          .subscribe((resp) => {
-            for (let u of resp) {
-              this.encuestas.push(new EncuestaModelClass(u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario));
-            }
-          });
-
+          .subscribe();
     }
 
     selectEncuesta(encuesta){
