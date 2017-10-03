@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms'; 
 import { AlertService, AuthenticationService } from '../shared/services/index';
-import {EmailValidator} from '../register/validators'; 
+import {EmailValidator} from '../register/validators';
+import {Http, Headers} from "@angular/http";
+import {NgClass} from '@angular/common';
+import {Observable} from "rxjs/Observable";
+import 'rxjs/Rx'; 
  
 @Component({
     selector: 'login',
@@ -17,6 +22,7 @@ export class LoginComponent implements OnInit {
     public email:AbstractControl;
     public password:AbstractControl;
 
+    nome :any = localStorage['app-appHeader'];
     model: any = {};
     loading = false;
     returnUrl: string;
@@ -26,6 +32,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService,
+        private idle: Idle,
+        private http: Http,
         fb:FormBuilder) 
         {
           this.form = fb.group({
@@ -35,10 +43,23 @@ export class LoginComponent implements OnInit {
       
           this.email = this.form.controls['email'];
           this.password = this.form.controls['password'];
-          // this.router = this.router;
-          // this.route = this.route;
-          // this.authenticationService = this.authenticationService;
-          // this.alertService = this.alertService;
+
+          idle.setIdle(10);
+          idle.setTimeout(1800);
+          idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+  
+          // idle.onTimeoutWarning.subscribe((countdown: number) => {
+          //     alert('Timeout Warning - ' + countdown);
+          // });
+  
+          idle.onTimeout.subscribe(() => {
+
+            localStorage.clear();
+  
+            this.router.navigate(['/login', {sessionExpirate: 'true'}]);
+          });
+  
+          idle.watch();
          }
  
     ngOnInit() {
