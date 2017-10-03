@@ -28,6 +28,17 @@ getEncuestas(){
           });
 }
 
+getEncuestas_x_Usuario( id ){
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
+        .map(resp => {
+            for (let u of resp.json()) {
+              this.encuestas.push(new EncuestaModelClass(
+                  u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario)
+                );
+            }
+          });
+}
+
 getEncuestaByName(termino){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
     .map(res =>{
@@ -51,8 +62,9 @@ saveSurvey(survey: SurveyModelClass, tituloParm:string) {
     let surveyJson = JSON.stringify(survey)
     let objSurvey: surveyI = JSON.parse(surveyJson)
     var surveyModel = new SurveyModelClass()
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    surveyModel.inicializate(surveyJson,1,1,tituloParm)
+    surveyModel.inicializate(surveyJson,1,currentUser.idUsuario,tituloParm)
 
     let surveyJsonToPost = JSON.stringify(surveyModel)
     console.log(surveyJsonToPost)

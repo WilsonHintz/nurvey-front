@@ -30,7 +30,8 @@ export class SurveyEditorComponent  {
 
     /**
      * Metodo de inicio del componente
-     */
+    **/
+
     ngOnInit() {
         let editorOptions = { showEmbededSurveyTab: false, generateValidJSON : true, showJSONEditorTab: false};
         this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
@@ -47,7 +48,7 @@ export class SurveyEditorComponent  {
         console.log(this.editor.text); // json puro
         console.log(JSON.stringify(this.editor.text)); //json stringify
         console.log(JSON.parse(this.editor.text)); // json parseado a Objeto para emitir
-       this.surveySaved.emit(JSON.parse(this.editor.text));
+        this.surveySaved.emit(JSON.parse(this.editor.text));
 
         this.newSurvey = JSON.parse(this.editor.text);
         if(this.titulo === undefined){

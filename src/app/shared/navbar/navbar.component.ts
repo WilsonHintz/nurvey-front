@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
-    currentUser: UserModelClass;
+    currentUser: any;
     public authenticationService: AuthenticationService;
     users: UserModelClass[] = [];
     model: any = {};

@@ -16,11 +16,13 @@ export class misEncuestasComponent implements OnInit {
     encuestas: Array<EncuestaModelClass>
     activeEncuesta;
     surveyService: SurveyService;
+    currentUser: any;
 
     termino:string ="";
 
     constructor(SurveyService: SurveyService){
         this.surveyService = SurveyService;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
 
@@ -34,7 +36,7 @@ export class misEncuestasComponent implements OnInit {
     }
 
     loadEncuestas(){
-        this.surveyService.getEncuestas()
+        this.surveyService.getEncuestas_x_Usuario(this.currentUser.idUsuario)
           .subscribe();
     }
 
