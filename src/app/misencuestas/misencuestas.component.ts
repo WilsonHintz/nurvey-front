@@ -4,7 +4,8 @@ import * as Survey from 'survey-angular';
 
 import { SurveyService } from './../shared/services/survey.service';
 import { ClienteModelClass } from './../shared/models/ClienteModelClass';
-import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
+import { SurveyModelClass } from './../shared/models/SurveyModelClass';
+// import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
 
 @Component({
     selector: 'misEncuestas',
@@ -13,7 +14,7 @@ import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
 })
 export class misEncuestasComponent implements OnInit {
     surveyRender: object;
-    encuestas: Array<EncuestaModelClass>
+    encuestas: Array<SurveyModelClass>
     activeEncuesta;
     surveyService: SurveyService;
     currentUser: any;

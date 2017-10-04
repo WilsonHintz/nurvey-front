@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { SurveyModelClass } from '../models/SurveyModelClass';
-import { EncuestaModelClass } from '../models/EncuestaModelClass';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
+// import { EncuestaModelClass } from '../models/EncuestaModelClass';
 
 import 'rxjs/add/operator/map';
 
@@ -21,20 +21,37 @@ getEncuestas(){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta")
         .map(resp => {
             for (let u of resp.json()) {
-              this.encuestas.push(new EncuestaModelClass(
-                  u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario)
-                );
-            }
-          });
+              this.encuestas.push(
+                new SurveyModelClass(
+                    u.idEncuesta,
+                    u.tituloEncuesta, 
+                    u.definicionJSON, 
+                    u.idCategoriaEncuesta,
+                    u.idUsuario,
+                    u.fechaEncuesta,
+                    u.publicado,
+                    u.estadoEncuesta)
+                                    );
+                                        }
+                    }
+            );
 }
 
 getEncuestas_x_Usuario( id ){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
         .map(resp => {
             for (let u of resp.json()) {
-              this.encuestas.push(new EncuestaModelClass(
-                  u.idEncuesta, u.tituloEncuesta, u.definicionJSON, u.idCategoriaEncuesta ,u.idUsuario)
-                );
+                this.encuestas.push(
+                    new SurveyModelClass(
+                        u.idEncuesta,
+                        u.tituloEncuesta, 
+                        u.definicionJSON, 
+                        u.idCategoriaEncuesta,
+                        u.idUsuario,
+                        u.fechaEncuesta,
+                        u.publicado,
+                        u.estadoEncuesta)
+                                        );
             }
           });
 }
@@ -61,10 +78,16 @@ saveSurvey(survey: SurveyModelClass, tituloParm:string) {
 
     let surveyJson = JSON.stringify(survey)
     let objSurvey: surveyI = JSON.parse(surveyJson)
-    var surveyModel = new SurveyModelClass()
+    /*
+    *   Inicializamos el objeto SURVEY con la informacion necesaria.
+    */
+    var surveyModel: SurveyModelClass;
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var displayDate = new Date().toLocaleDateString();
+    var publicado = false;
+    var estadoEncuesta = "CREADA"
 
-    surveyModel.inicializate(surveyJson,1,currentUser.idUsuario,tituloParm)
+    surveyModel.inicializate(surveyJson,1,currentUser.idUsuario,tituloParm,displayDate,publicado,estadoEncuesta)
 
     let surveyJsonToPost = JSON.stringify(surveyModel)
     console.log(surveyJsonToPost)
