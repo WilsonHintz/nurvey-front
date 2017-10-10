@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultadoService } from '../shared/services/resultados.service';
 import * as Chartist from 'chartist';
+import { SurveyService } from './../shared/services/survey.service';
 
 declare var $:any;
 declare var labelsGrafico:any;
@@ -16,6 +17,7 @@ declare var seriesGrafico:any;
 export class DashboardComponent implements OnInit{
     resultadoService: ResultadoService;  
     nombreGrafico: string;
+    preguntasEncuesta = []; 
     labelsGrafico = []; 
     seriesGrafico = [];
     labelsGraficoProyecto = []; 
@@ -23,8 +25,9 @@ export class DashboardComponent implements OnInit{
     labelsGraficoJornadas = []; 
     seriesGraficoJornadas = [];
     horaChartExposicionPoster : any;
+    surveyService: SurveyService;
 
-    constructor(resultadoService: ResultadoService){
+    constructor(resultadoService: ResultadoService, surveyService: SurveyService){
       this.resultadoService = resultadoService;
       this.labelsGrafico = []; 
       this.seriesGrafico = [];
@@ -32,9 +35,14 @@ export class DashboardComponent implements OnInit{
       this.seriesGraficoProyecto = [];
       this.labelsGraficoJornadas = []; 
       this.seriesGraficoJornadas = [];
-  }
+      this.surveyService = surveyService;
+  }  
     ngOnInit(){
-
+      this.loadEncuestas();
+        this.preguntasEncuesta.push({id:1,descripcion:"Preguntas 1"});
+        this.preguntasEncuesta.push({id:2,descripcion:"Preguntas 2"});
+        this.preguntasEncuesta.push({id:3,descripcion:"Preguntas 3"});
+        this.preguntasEncuesta.push({id:4,descripcion:"Preguntas 4"});
       
 
         var colorGenerador = 1;
@@ -99,5 +107,15 @@ export class DashboardComponent implements OnInit{
         });
 
         
+    }
+
+    loadEncuestas(){
+        this.surveyService.getEncuestas()
+          .subscribe();
+    }
+
+    onChange(deviceValue) {
+      this.surveyService.getPreguntasEncuesta()
+          .subscribe();              
     }
 }

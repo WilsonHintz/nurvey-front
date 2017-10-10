@@ -1,3 +1,36 @@
+<div class="container-fluid">   
+    <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Opciones de busqueda</h4>                        
+                    </div>     
+                    <div class="content">
+                        <label>Encuesta:</label>
+                        <select (change)="onChange($event.target.value)">                            
+                            <option *ngFor="let encuesta of surveyService.encuestas"  value="{{encuesta.idEncuesta}}">        
+                                    {{encuesta.tituloEncuesta}}            
+                            </option>
+                        </select>
+
+                        <br/>
+
+                        <template ngFor let-agrupada [ngForOf] = "preguntasAgrupables"  let-i = "index">
+                            <input type="checkbox" value="{{agrupada.id}}"/><label>{{agrupada.descripcion}}</label><br/>
+                        </template>
+
+                    </div>               
+                </div>
+            </div>
+    </div>            
+ </div>
+
+    
+    
+    <grafico-pregunta *ngFor="let pregunta of surveyService.preguntas" title="{{pregunta.descripcion}}">        
+        
+    </grafico-pregunta>
+    
     <div class="container-fluid">                   
         <div class="row">
             <div class="col-md-8">

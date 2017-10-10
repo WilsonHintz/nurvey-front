@@ -12,6 +12,7 @@ const SERVER_REST_API_URL = "http://localhost:3000/surveys/";
 export class SurveyService {
 private serverRestAPIUrl: string;
 encuestas:any [] = [];
+preguntas:any [] = [];
 
 constructor( private http:Http) {
     this.serverRestAPIUrl = environment.apiEndPoint + "/api";
@@ -113,6 +114,18 @@ guardarRespuesta(parm: any){
     });
 
     return this.http.post(this.serverRestAPIUrl + "/Respuestaas", parm, options)
+}
+
+getPreguntasEncuesta(){
+    
+    return this.http.get(this.serverRestAPIUrl + "/Pregunta")
+        .map(resp => {
+            for (let u of resp.json()) {                                
+                if(u.idEncuesta == 59){
+                    this.preguntas.push(u);
+                }
+            }
+        });
 }
 
 }

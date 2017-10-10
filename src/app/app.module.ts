@@ -13,6 +13,8 @@ import { NguiMapModule} from '@ngui/map';
 
 
 import { DashboardComponent }   from './dashboard/dashboard.component';
+import { FiltrodashComponent } from './dashboard/filtrodash.component';
+import { GraficoPreguntaComponent } from './dashboard/graficoPregunta.component';
 import { UserComponent }   from './user/user.component';
 import { TableComponent }   from './table/table.component';
 import { TypographyComponent }   from './typography/typography.component';
@@ -52,7 +54,9 @@ import { HomeComponent } from './home/index';
     misEncuestasComponent,
     respuestaComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    FiltrodashComponent,
+    GraficoPreguntaComponent
   ],
   imports: [
     BrowserModule,
