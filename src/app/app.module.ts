@@ -27,7 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './misencuestas/misencuestas.component';
 import { respuestaComponent } from './respuesta/respuesta.component';
-
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 //import { customHttpProvider } from './shared/helpers/index';
 import { AlertComponent } from './shared/directives/index';
 import { AuthGuard } from './shared/guards/index';
@@ -61,7 +61,7 @@ import { HomeComponent } from './home/index';
     NavbarModule,
     //FooterModule,
     HttpModule,
-
+    NgIdleKeepaliveModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBr-tgUtpm8cyjYVQDrjs8YpZH7zBNWPuY'})
