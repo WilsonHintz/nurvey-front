@@ -14,7 +14,6 @@ export class UserService {
         this.http = http;
         this.serverRestAPIUrl = environment.apiEndPoint + "/api";
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(this.currentUser.idUsuario);
      }
 
     getAll() {
