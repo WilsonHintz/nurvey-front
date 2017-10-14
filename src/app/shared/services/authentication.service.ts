@@ -11,11 +11,24 @@ export class AuthenticationService {
     private serverRestAPIUrl: string;
     isLoggedIn = false;
 
+
+    /**
+     * constructor por parametros
+     * this.serverRestAPIUrl contiene la ruta donde se encuentra la api
+     * @param http modulo http
+     */
     constructor(http: Http) { 
         this.http = http;
         this.serverRestAPIUrl = environment.apiEndPoint + "/api";
     }
 
+    /**
+     * loguea el usuario guardandola en la api corespondiente pasandole por parametros email y contraseña
+     * Si el usuario es verdadero crea la sesión
+     * Sino manda mensaje
+     * @param emailUsuario 
+     * @param passwordUsuario 
+     */
     login(emailUsuario: string, passwordUsuario: string) {
         return this.http.get(this.serverRestAPIUrl + '/Usuario?emailUsuario=' + emailUsuario + '&passwordUsuario=' + passwordUsuario )
             .map((response: Response) => {
@@ -37,10 +50,16 @@ export class AuthenticationService {
             });
     }
 
+    /**
+     * Bandera para saber si el usuario esta logueado o no
+     */
     public isAuthenticated(): boolean {
         return this.isLoggedIn;
       } 
 
+      /**
+       * Deslogueo de usuario borrando la sesion
+       */
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
