@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: "http://nurvey.sytes.net:8000"
-  //apiEndPoint: "http://192.168.0.24"
+  //apiEndPoint: "http://nurvey.sytes.net:8000"
+  apiEndPoint: "http://192.168.0.27"
 };
