@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ResultadoService } from '../shared/services/resultados.service';
 import * as Chartist from 'chartist';
+import { SurveyService } from './../shared/services/survey.service';
+import { PreguntasService } from './../shared/services/preguntas.service';
 
 declare var $:any;
 declare var labelsGrafico:any;
@@ -16,88 +18,46 @@ declare var seriesGrafico:any;
 export class DashboardComponent implements OnInit{
     resultadoService: ResultadoService;  
     nombreGrafico: string;
-    labelsGrafico = []; 
-    seriesGrafico = [];
-    labelsGraficoProyecto = []; 
-    seriesGraficoProyecto = [];
-    labelsGraficoJornadas = []; 
-    seriesGraficoJornadas = [];
+    preguntasEncuesta = [];     
     horaChartExposicionPoster : any;
+    surveyService: SurveyService;
+    preguntasService: PreguntasService;
+    preguntasAgrupables:any[];
 
-    constructor(resultadoService: ResultadoService){
-      this.resultadoService = resultadoService;
-      this.labelsGrafico = []; 
-      this.seriesGrafico = [];
-      this.labelsGraficoProyecto = []; 
-      this.seriesGraficoProyecto = [];
-      this.labelsGraficoJornadas = []; 
-      this.seriesGraficoJornadas = [];
-  }
+    constructor(resultadoService: ResultadoService, surveyService: SurveyService, preguntasService:PreguntasService){
+      this.resultadoService = resultadoService;      
+      this.surveyService = surveyService;
+      this.preguntasService = preguntasService;
+      this.preguntasAgrupables = [];
+  }  
     ngOnInit(){
+      this.loadEncuestas();                              
+                
+    }
 
+    loadEncuestas(){
+        this.surveyService.getEncuestas()
+          .subscribe();
+    }
+
+    onChange(idEncuesta) {      
+      this.preguntasService.getPreguntasEncuesta(idEncuesta)
+          .subscribe();              
+    }
+
+    getPreguntasAgrupadas(idEncuesta){
+      this.preguntasService.getPreguntasAgrupablesEncuesta(idEncuesta)
+          .subscribe();              
+    }
+
+    seleccionarEncuesta(){
+      var idEncuesta = $("#selectorEncuesta").val();
+      this.preguntasService.getPreguntasEncuesta(idEncuesta)
+          .subscribe();              
       
-
-        var colorGenerador = 1;
-        this.resultadoService.getResultadosGeneral("PROYECTO_NURVEY",59)
-        .subscribe((resp) => {         
-          for(var item = 0; item < resp.labels.length; item++){
-            this.labelsGraficoProyecto.push(resp.labels[item]);    
-            var serie = resp.series[item];
-            this.seriesGraficoProyecto.push({value:serie,className:"myclass"+(item+1), nombre:resp.labels[item]});
-          }
-          
-          /*Chartist.Bar('#chartNuestroProyecto', {            
-            series: this.seriesGraficoProyecto,
-            labels: this.labelsGraficoProyecto
-          });*/          
-
-          Chartist.Bar('#chartNuestroProyecto', {
-            labels: this.labelsGraficoProyecto,
-            series: this.seriesGraficoProyecto
-          }, {
-            distributeSeries: true
-          });
-
-        });
-             
-        
-        colorGenerador = 1;
-        this.resultadoService.getResultadosGeneral("EXPOSICION_POSTER",59)
-        .subscribe((resp) => {         
-          for(var item = 0; item < resp.labels.length; item++){
-            this.labelsGrafico.push(resp.labels[item]);    
-            var serie = resp.series[item];
-            this.seriesGrafico.push({value:serie,className:"myclass"+(item+1), nombre:resp.labels[item]});
-          }
-          
-          Chartist.Pie('#chartExposicionPoster', {            
-            series: this.seriesGrafico
-          },{
-            labelInterpolationFnc: function(value) {
-              return value + '%';
-            }
-          });          
-        });
-      
-
-        colorGenerador = 1;
-        this.resultadoService.getResultadosGeneral("JORNADAS_PUERTAS_ABIERTAS",59)
-        .subscribe((resp) => {         
-          for(var item = 0; item < resp.labels.length; item++){
-            this.labelsGraficoJornadas.push(resp.labels[item]);    
-            var serie = resp.series[item];
-            this.seriesGraficoJornadas.push({value:serie,className:"myclass"+(item+1), nombre:resp.labels[item]});
-          }
-          
-          Chartist.Pie('#chartJornadasPuertasAbiertas', {            
-            series: this.seriesGraficoJornadas
-          },{
-            labelInterpolationFnc: function(value) {
-              return value + '%';
-            }
-          });          
-        });
-
-        
+      this.getPreguntasAgrupadas(idEncuesta);
+        //var preguntaAgrupable = {idPregunta:1, descripcion:"Sexo",activo:false, respuestasPosibles:["Masculino","Femenino"]}
+        //var preguntaAgrupableEdad = {idPregunta:2, descripcion:"Edad",activo:true, respuestasPosibles:["10-15","15-25","25-35"]}
+      this.preguntasAgrupables = this.preguntasService.preguntasAgrupables;
     }
 }

@@ -7,8 +7,9 @@ import 'bootstrap';
 
 import { SurveyService } from './../shared/services/survey.service';
 import { ClienteModelClass } from './../shared/models/ClienteModelClass';
-import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
 import { SurveyModelClass } from './../shared/models/SurveyModelClass';
+// import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
+
 
 @Component({
     selector: 'respuestaEncuesta',
@@ -20,8 +21,8 @@ export class respuestaComponent implements OnInit, OnDestroy {
     id: number; 
     private sub: any;
     surveyService: SurveyService;
-    private surveyModel = new SurveyModelClass()
-    encuestas: Array<EncuestaModelClass>
+    private surveyModel: SurveyModelClass;
+    encuestas: Array<SurveyModelClass>
     private respuesta: string;
 
     constructor(private route: ActivatedRoute,surveyService: SurveyService){

@@ -13,6 +13,8 @@ import { NguiMapModule} from '@ngui/map';
 
 
 import { DashboardComponent }   from './dashboard/dashboard.component';
+import { FiltrodashComponent } from './dashboard/filtrodash.component';
+import { GraficoPreguntaComponent } from './dashboard/graficoPregunta.component';
 import { UserComponent }   from './user/user.component';
 import { TableComponent }   from './table/table.component';
 import { TypographyComponent }   from './typography/typography.component';
@@ -21,6 +23,7 @@ import { MapsComponent }   from './maps/maps.component';
 import { NotificationsComponent }   from './notifications/notifications.component';
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { SurveyService } from './shared/services/survey.service';
+import { PreguntasService } from './shared/services/preguntas.service';
 import { ResultadoService } from './shared/services/resultados.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -53,8 +56,10 @@ import { HomeComponent } from './home/index';
     misEncuestasComponent,
     respuestaComponent,
     HomeComponent,
+    AlertComponent,
     PasswordComponent,
-    AlertComponent
+    FiltrodashComponent,
+    GraficoPreguntaComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,7 @@ import { HomeComponent } from './home/index';
   ],
   providers: [
     SurveyService,
+    PreguntasService,
     //customHttpProvider,
     ResultadoService,
     AuthGuard,

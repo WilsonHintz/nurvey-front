@@ -18,9 +18,9 @@ constructor(http:Http) {
 }
 
 
-getResultadosGeneral(nombreGrafico: string, idEncuesta: number){
+getResultadosGeneral(idEncuesta: number, idPregunta: number){
     
-    return this.http.get(this.serverRestAPIUrl + "/Resultados?nombreGrafico="+nombreGrafico+"&idEncuesta="+idEncuesta)
+    return this.http.get(this.serverRestAPIUrl + "/Resultados?idEncuesta="+idEncuesta+"&idPregunta="+idPregunta)
     .map(res => res.json());    
 }
 
