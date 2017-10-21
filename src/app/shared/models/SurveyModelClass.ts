@@ -1,6 +1,6 @@
 export class SurveyModelClass{
     idEncuesta: number;
-    definicionJSON: string;
+    definicion: string;
     idCategoriaEncuesta: number;
     idUsuario: number;
     tituloEncuesta: string; 

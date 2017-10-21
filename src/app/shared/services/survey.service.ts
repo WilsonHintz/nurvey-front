@@ -13,6 +13,8 @@ const SERVER_REST_API_URL = "http://localhost:3000/surveys/";
 export class SurveyService {
 private serverRestAPIUrl: string;
 encuestas:any [] = [];
+encuestasXusuario:any [] = []; 
+currentUser: any; 
 
 constructor( private http:Http) {
     this.serverRestAPIUrl = environment.apiEndPoint + "/api";
@@ -20,49 +22,7 @@ constructor( private http:Http) {
 
 getEncuestas(){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta")
-        .map(resp => {
-            for (let u of resp.json()) {
-              this.encuestas.push(
-                new SurveyModelClass(
-                    u.idEncuesta,
-                    u.tituloEncuesta, 
-                    u.definicionJSON, 
-                    u.idCategoriaEncuesta,
-                    u.idUsuario,
-                    u.fechaEncuesta,
-                    u.publicado,
-                    u.estadoEncuesta)
-                                    );
-                                        }
-                    }
-            );
-}
-
-getEncuestas_x_Usuario( id ){
-    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
-        .map(resp => {
-            for (let u of resp.json()) {
-                this.encuestas.push(
-                    new SurveyModelClass(
-                        u.idEncuesta,
-                        u.tituloEncuesta, 
-                        u.definicionJSON, 
-                        u.idCategoriaEncuesta,
-                        u.idUsuario,
-                        u.fechaEncuesta,
-                        u.publicado,
-                        u.estadoEncuesta)
-                                        );
-            }
-          });
-}
-
-getEncuestaByName(termino){
-    return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
-    .map(res =>{
-        this.encuestas = res.json();
-    }
-);
+    .map(res => res.json());    
 }
 
 getEncuestasById(id: string){
@@ -163,6 +123,21 @@ archivarEncuesta(idEncuesta, idUsuario){
     return this.http.post(url,body,options)
 }
 
-
-
+getEncuestasByEstado(estado: string){ 
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta") 
+    .map(res => { 
+        this.encuestas = res.json(); 
+        this.encuestas.forEach(element => { 
+            if (element.idUsuario == this.currentUser.idUsuario && element.estadoEncuesta == estado){ 
+                for (var index = 0; index < this.encuestasXusuario.length; index++) { 
+                    var element2 = this.encuestasXusuario[index]; 
+                    if (element2.idEncuesta !== element.idEncuesta){ 
+                        this.encuestasXusuario.splice(0); 
+                        this.encuestasXusuario.push(element); 
+                    } 
+                } 
+            } 
+        }); 
+    }); 
+} 
 }

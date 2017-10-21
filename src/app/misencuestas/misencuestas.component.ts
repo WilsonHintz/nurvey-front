@@ -5,7 +5,7 @@ import * as Survey from 'survey-angular';
 import { SurveyService } from './../shared/services/survey.service';
 import { ClienteModelClass } from './../shared/models/ClienteModelClass';
 import { SurveyModelClass } from './../shared/models/SurveyModelClass';
-// import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
+//import { EncuestaModelClass } from './../shared/models/EncuestaModelClass';
 
 @Component({
     selector: 'misEncuestas',
@@ -21,8 +21,8 @@ export class misEncuestasComponent implements OnInit {
     termino:string ="";
     currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
     
-    encuesta:Object = { 
-        estadoEncuesta: "" 
+    encuesta = { 
+        estadoEncuesta:"" 
     } 
  
     estados = [ 
@@ -38,8 +38,6 @@ export class misEncuestasComponent implements OnInit {
             codigo: "RES", 
             descripcion: "Respondida" 
         }] 
-
-    termino:string ="";
 
     constructor(SurveyService: SurveyService){
         this.surveyService = SurveyService;
@@ -92,6 +90,19 @@ export class misEncuestasComponent implements OnInit {
             });
     }
 
+
+    /** 
+     * Ejecuta evento al seleccionar un estado del combobox. 
+     */ 
+    selectEstado(estadoParm){ 
+        this.estados.forEach(element => { 
+            if(element.codigo == estadoParm){ 
+                this.surveyService.getEncuestasByEstado(element.descripcion) 
+                .subscribe(); 
+            } 
+        }); 
+    }     
+
      /** 
      * Mediante el servicio surveyService.archivarEncuesta permite modificar el estado de la encuesta a ARCHIVADA 
      * @param idEncuesta id de Encuesta 
@@ -104,6 +115,5 @@ export class misEncuestasComponent implements OnInit {
                     alert("La encuesta ha sido archivada.") 
                 } 
             ) 
-    } 
-    
+    }     
 }
