@@ -11,21 +11,21 @@
         </div>
         <div class="collapse navbar-collapse"  >
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li *ngIf="!authenticationService.isAuthenticated()">
                     <!-- 
                         <button 
                         (click)="salir()" *ngIf="authenticationService.isAuthenticated()" 
                         type="button" class="btn btn-primary" [routerLink]="['/login']">Salir</button>
                         -->
                          <button 
-                        (click)="login()" *ngIf="!authenticationService.isAuthenticated()"
+                         *ngIf="!authenticationService.isAuthenticated()"
                         [routerLink]="['login']"
                         type="button" class="btn btn-primary">Ingresar</button>
                 </li> 
                 <li class="dropdown" *ngIf="authenticationService.isAuthenticated()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
-                        <strong>{{currentUser.nombreUsuario}}</strong>
+                        <strong *ngIf="authenticationService.isAuthenticated()">{{currentUser.nombreUsuario}}</strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">

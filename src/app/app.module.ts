@@ -27,6 +27,7 @@ import { PreguntasService } from './shared/services/preguntas.service';
 import { ResultadoService } from './shared/services/resultados.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PasswordComponent } from './password/password.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './misencuestas/misencuestas.component';
 import { respuestaComponent } from './respuesta/respuesta.component';
@@ -56,6 +57,7 @@ import { HomeComponent } from './home/index';
     respuestaComponent,
     HomeComponent,
     AlertComponent,
+    PasswordComponent,
     FiltrodashComponent,
     GraficoPreguntaComponent
   ],

@@ -8,10 +8,12 @@ import { environment } from '../../../environments/environment';
 export class UserService {
     private http: Http;
     private serverRestAPIUrl: string;
+    currentUser: UserModelClass;
 
     constructor(http: Http) {
         this.http = http;
         this.serverRestAPIUrl = environment.apiEndPoint + "/api";
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
      }
 
     getAll() {
@@ -32,12 +34,23 @@ export class UserService {
             headers: headers,
             body: JSON.stringify(user)
          });
-         console.log(options);
+         let userLogueado = localStorage.getItem('currentUser')
+         console.log(userLogueado);
         return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
     }
 
     update(user: UserModelClass) {
-        return this.http.put(this.serverRestAPIUrl + '/Usuario?idUsuario=' + user.idUsuario, user);
+        let userJson = JSON.stringify(user)
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
+        let options = new RequestOptions({
+           method: 'PUT',
+          // url: this.serverRestAPIUrl + '/Usuario',
+           headers: headers,
+          // body: JSON.stringify(userJson)
+        });
+        console.log(options);
+        return this.http.put(this.serverRestAPIUrl + '/Usuario', userJson, options)
+            .map(res => res.json());
     }
 
     delete(idUsuario: string) {

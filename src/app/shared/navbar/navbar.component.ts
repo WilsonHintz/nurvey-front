@@ -21,25 +21,29 @@ export class NavbarComponent implements OnInit{
     private sidebarVisible: boolean;
     currentUser: any;
     public authenticationService: AuthenticationService;
-    users: UserModelClass[] = [];
     model: any = {};
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, 
-        private element : ElementRef, private userService: UserService, 
-        authenticationService: AuthenticationService) {
+    constructor(location:Location,
+        private renderer : Renderer, 
+        private element : ElementRef, 
+        private userService: UserService, 
+        authenticationService: AuthenticationService)
+        {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.authenticationService = authenticationService;
+        //this.model = this.currentUser;
     }
 
     ngOnInit(){
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+        //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     getTitle(){
         var titlee = window.location.pathname;
@@ -54,16 +58,13 @@ export class NavbarComponent implements OnInit{
 
     login() {
         
-    this.authenticationService.login(this.model.emailUsuario, this.model.passwordUsuario)
+    this.authenticationService.login(this.currentUser.emailUsuario, this.currentUser.passwordUsuario)
     }
 
     salir(){
         this.authenticationService.logout();
       }
 
-    loguear(){
-        
-    }
 
     sidebarToggle(){
         var toggleButton = this.toggleButton;

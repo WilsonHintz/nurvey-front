@@ -14,6 +14,7 @@ import { respuestaComponent } from './respuesta/respuesta.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { HomeComponent } from './home/index';
 import { AuthGuard } from './shared/guards/index';
+import { PasswordComponent } from './password/password.component';
 
 export const AppRoutes: Routes = [
 
@@ -28,6 +29,11 @@ export const AppRoutes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGuard]  
+    },
+    {
+        path: 'password',
+        component: PasswordComponent,
         canActivate: [AuthGuard]  
     },
     {
