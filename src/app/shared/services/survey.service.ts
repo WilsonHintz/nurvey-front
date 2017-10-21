@@ -78,17 +78,16 @@ saveSurvey(survey: SurveyModelClass, tituloParm:string) {
     }
 
     let surveyJson = JSON.stringify(survey)
-    let objSurvey: surveyI = JSON.parse(surveyJson)
-    /*
-    *   Inicializamos el objeto SURVEY con la informacion necesaria.
-    */
-    var surveyModel: SurveyModelClass;
+    // let objSurvey: surveyI = JSON.parse(surveyJson)
+    // objSurvey.title = tituloParm
+
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     var displayDate = new Date().toLocaleDateString();
     var publicado = false;
     var estadoEncuesta = "CREADA"
 
-    surveyModel.inicializate(surveyJson,1,currentUser.idUsuario,tituloParm,displayDate,publicado,estadoEncuesta)
+    var surveyModel = new SurveyModelClass()
+    surveyModel.inicializate(tituloParm,surveyJson,1,currentUser.idUsuario,displayDate,publicado,estadoEncuesta)
 
     let surveyJsonToPost = JSON.stringify(surveyModel)
     console.log(surveyJsonToPost)
@@ -115,5 +114,55 @@ guardarRespuesta(parm: any){
 
     return this.http.post(this.serverRestAPIUrl + "/Respuestaas", parm, options)
 }
+
+getEncuestas_x_Usuario( id ){
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
+        .map(resp => {
+            var surveyModel = new SurveyModelClass();
+            for (let u of resp.json()) {
+                // surveyModel.inicializate(
+                //     u.tituloEncuesta, 
+                //     u.definicionJSON, 
+                //     u.idCategoriaEncuesta,
+                //     u.idUsuario,
+                //     u.fechaEncuesta,
+                //     u.publicado,
+                //     u.estadoEncuesta)
+                //     console.log(surveyModel)
+                this.encuestas.push(u)
+            }
+          });
+}
+
+/**
+ * Obtengo las encuestas filtradas por el termino a través de método GET
+ * @param termino parametro texto a filtrar
+ */
+getEncuestaByName(termino){
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
+    .map(res =>{
+        this.encuestas = res.json();
+    }
+);
+}
+
+/**
+ * Actualizacion de estado de encuesta a ARCHIVADA a través de método PUT
+ * @param idEncuesta id de Encuesta 
+ * @param idUsuario id usuario logueado
+ */
+archivarEncuesta(idEncuesta, idUsuario){
+    console.log("IdEncuesta: "+idEncuesta + " IdUsuario: "+idUsuario)
+    let url = this.serverRestAPIUrl + "/Encuesta?estadoEncuesta=archivada&idEncuesta="+idEncuesta+"&idUsuario="+idUsuario;
+    let body = "";
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
+    let options = new RequestOptions({
+        method: 'PUT',
+        headers: headers
+    });
+    return this.http.post(url,body,options)
+}
+
+
 
 }
