@@ -94,16 +94,22 @@ export class misEncuestasComponent implements OnInit {
 
 
     /** 
-     * Ejecuta evento al seleccionar un estado del combobox. 
+     * Ejecuta evento al seleccionar un estado del combobox.
      */ 
-    selectEstado(estadoParm){ 
-        this.estados.forEach(element => { 
-            if(element.codigo == estadoParm){ 
-                this.surveyService.getEncuestasByEstado(element.descripcion) 
-                .subscribe(); 
+    selectEstado(estadoEncuesta){
+        if (estadoEncuesta !== undefined)
+        {
+            for (var index = 0; index < this.estados.length; index++) 
+            {
+                if (this.estados[index].codigo === estadoEncuesta)
+                {
+                var descripcion = this.estados[index].descripcion;
+                }
             } 
-        }); 
-    }     
+            this.surveyService.getEncuestaByEstado(descripcion,this.currentUser.idUsuario) 
+            .subscribe(); 
+        }
+    }    
 
      /** 
      * Mediante el servicio surveyService.archivarEncuesta permite modificar el estado de la encuesta a ARCHIVADA 
@@ -119,19 +125,6 @@ export class misEncuestasComponent implements OnInit {
             ) 
     }
     
-    selectEstado(estadoEncuesta){
-        if (estadoEncuesta !== undefined)
-        {
-            for (var index = 0; index < this.estados.length; index++) 
-            {
-                if (this.estados[index].codigo === estadoEncuesta)
-                {
-                var descripcion = this.estados[index].descripcion;
-                }
-            } 
-            this.surveyService.getEncuestaByEstado(descripcion,this.currentUser.idUsuario) 
-            .subscribe(); 
-        }
-    }
+    
     
 }
