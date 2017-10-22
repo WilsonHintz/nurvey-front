@@ -20,7 +20,7 @@ constructor(http:Http) {
 
 getEncuestas(){
     return this.http.get(this.serverRestAPIUrl + "/Encuesta")
-    .map(res => res.json());    
+    .map(res => res.json());
 }
 
 getEncuestasById(id: string){
@@ -74,19 +74,11 @@ guardarRespuesta(parm: any){
 }
 
 getEncuestas_x_Usuario( id ){
+    this.encuestas.splice(0)
     return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
         .map(resp => {
             var surveyModel = new SurveyModelClass();
             for (let u of resp.json()) {
-                // surveyModel.inicializate(
-                //     u.tituloEncuesta, 
-                //     u.definicionJSON, 
-                //     u.idCategoriaEncuesta,
-                //     u.idUsuario,
-                //     u.fechaEncuesta,
-                //     u.publicado,
-                //     u.estadoEncuesta)
-                //     console.log(surveyModel)
                 this.encuestas.push(u)
             }
           });
@@ -96,12 +88,35 @@ getEncuestas_x_Usuario( id ){
  * Obtengo las encuestas filtradas por el termino a través de método GET
  * @param termino parametro texto a filtrar
  */
-getEncuestaByName(termino){
-    return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
-    .map(res =>{
-        this.encuestas = res.json();
-    }
-);
+getEncuestaByName(termino,id){
+    // return this.http.get(this.serverRestAPIUrl + "/Encuesta?filtro="+termino)
+    this.encuestas.splice(0)
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
+    .map(resp => {
+        var re = "/"+termino+"/i";
+        var reg = new RegExp(termino,'gi');
+        var surveyModel = new SurveyModelClass();
+        for (let u of resp.json()) {
+            var resultado = u.tituloEncuesta.search(reg)
+            if (u.tituloEncuesta.search(reg) != -1)
+            {this.encuestas.push(u);}
+            else {console.log("No coincide termino en titulo" + u.tituloEncuesta + " " +resultado);}
+        }
+    });
+}
+
+getEncuestaByEstado(estado,id){
+    this.encuestas.splice(0)
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
+    .map(resp => {
+        var surveyModel = new SurveyModelClass();
+        for (let u of resp.json()) {
+            if (u.estadoEncuesta === estado)
+            {
+                this.encuestas.push(u)
+            }
+        }
+    });
 }
 
 /**

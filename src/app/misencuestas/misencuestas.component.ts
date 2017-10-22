@@ -27,15 +27,15 @@ export class misEncuestasComponent implements OnInit {
     estados = [ 
         { 
             codigo: "CRE", 
-            descripcion: "Creada" 
+            descripcion: "creada" 
         }, 
         { 
             codigo: "ARC", 
-            descripcion: "Archivada" 
+            descripcion: "archivada" 
         }, 
         { 
             codigo: "RES", 
-            descripcion: "Respondida" 
+            descripcion: "respondida" 
         }] 
 
     constructor(SurveyService: SurveyService){
@@ -64,7 +64,9 @@ export class misEncuestasComponent implements OnInit {
      * Busqueda de encuestas por titulo 
      */ 
     buscarEncuestas(){ 
-        this.surveyService.getEncuestaByName(this.termino) 
+        var re = "[a-zA-Z]+";
+        var reg = new RegExp(re,'gi')
+        this.surveyService.getEncuestaByName(this.termino,this.currentUser.idUsuario) 
         .subscribe(); 
     } 
 
@@ -100,6 +102,21 @@ export class misEncuestasComponent implements OnInit {
                     alert("La encuesta ha sido archivada.") 
                 } 
             ) 
-    } 
+    }
+    
+    selectEstado(estadoEncuesta){
+        if (estadoEncuesta !== undefined)
+        {
+            for (var index = 0; index < this.estados.length; index++) 
+            {
+                if (this.estados[index].codigo === estadoEncuesta)
+                {
+                var descripcion = this.estados[index].descripcion;
+                }
+            } 
+            this.surveyService.getEncuestaByEstado(descripcion,this.currentUser.idUsuario) 
+            .subscribe(); 
+        }
+    }
     
 }
