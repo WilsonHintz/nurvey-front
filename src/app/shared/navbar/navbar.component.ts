@@ -19,27 +19,36 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
-    currentUser: UserModelClass;
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
     public authenticationService: AuthenticationService;
-    users: UserModelClass[] = [];
     model: any = {};
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, 
-        private element : ElementRef, private userService: UserService, 
-        authenticationService: AuthenticationService) {
+    constructor(location:Location,
+        private renderer : Renderer, 
+        private element : ElementRef, 
+        private userService: UserService, 
+        authenticationService: AuthenticationService)
+        {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
         this.authenticationService = authenticationService;
+        //this.model = this.currentUser;
     }
 
     ngOnInit(){
+        console.log("oninit_navBar")
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (this.currentUser == null || this.currentUser == undefined)
+        {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+        }
+        
     }
     getTitle(){
         var titlee = window.location.pathname;
@@ -54,16 +63,13 @@ export class NavbarComponent implements OnInit{
 
     login() {
         
-    this.authenticationService.login(this.model.emailUsuario, this.model.passwordUsuario)
+    this.authenticationService.login(this.currentUser.emailUsuario, this.currentUser.passwordUsuario)
     }
 
     salir(){
         this.authenticationService.logout();
       }
 
-    loguear(){
-        
-    }
 
     sidebarToggle(){
         var toggleButton = this.toggleButton;

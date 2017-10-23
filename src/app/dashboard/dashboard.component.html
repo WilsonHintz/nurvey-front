@@ -1,71 +1,36 @@
-    <div class="container-fluid">                   
-        <div class="row">
+<div class="container-fluid">   
+    <div class="row">
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Exposición de los Posters</h4>                        
-                    </div>
+                        <h4 class="title">Opciones de búsqueda</h4>                        
+                    </div>     
                     <div class="content">
-                        <div id="chartExposicionPoster" class="ct-chart ct-perfect-fourth"></div>
+                        <label>Encuesta:</label>
+                        <select id="selectorEncuesta">                            
+                            <option *ngFor="let encuesta of surveyService.encuestas"  value="{{encuesta.idEncuesta}}">        
+                                    {{encuesta.tituloEncuesta}}            
+                            </option>
+                        </select>
+                        <button (click)="seleccionarEncuesta()">Seleccionar</button>
+                        <br/>
 
-                        <div class="footer">
-                            <div class="chart-legend" >
-                                <template ngFor let-serie [ngForOf] = "seriesGrafico"  let-i = "index">
-                                    <i class="fa fa-circle {{serie.className}}"> </i>{{serie.nombre}}
-                                </template>
-                                    
-                                <!-- <i class="fa fa-circle text-info"></i> Open
-                                <i class="fa fa-circle text-danger"></i> Bounce
-                                <i class="fa fa-circle text-warning"></i> Unsubscribe -->
-                            
-                            <hr>
-                            <div class="stats">
-                                <i class="ti-timer"></i>Actualizado {{horaChartExposicionPoster}}
-                            </div>
-                        </div>
-                    </div>
+                        <ng-template ngFor let-agrupada [ngForOf] = "preguntasAgrupables"  let-i = "index">
+                            <input type="checkbox" [(ngModel)]="agrupada.activo" value="{{agrupada.id}}"/><label>{{agrupada.descripcion}}</label><br/>
+                        </ng-template>
+
+                    </div>               
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Nuestro proyecto NURVEY</h4>                        
-                    </div>
-                    <div class="content">
-                        <div id="chartNuestroProyecto" class="ct-chart ct-perfect-fourth"></div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>            
+ </div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Jornadas Puertas Abiertas</h4>                        
-                    </div>
-                    <div class="content">
-                        <div id="chartJornadasPuertasAbiertas" class="ct-chart ct-perfect-fourth"></div>   
-                        <div class="footer">
-                            <div class="chart-legend" >
-                                <template ngFor let-serie [ngForOf] = "seriesGraficoJornadas"  let-i = "index">
-                                    <i class="fa fa-circle {{serie.className}}"> </i>{{serie.nombre}}
-                                </template>
-                                    
-                                <!-- <i class="fa fa-circle text-info"></i> Open
-                                <i class="fa fa-circle text-danger"></i> Bounce
-                                <i class="fa fa-circle text-warning"></i> Unsubscribe -->
-                            
-                            <hr>
-                            <div class="stats">
-                                <i class="ti-timer"></i>Actualizado {{horaChartExposicionPoster}}
-                            </div>
-                        </div>                     
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    
+    
+<grafico-pregunta *ngFor="let pregunta of preguntasService.preguntas" 
+        title="{{pregunta.descripcion}}" 
+        idEncuesta="{{pregunta.idEncuesta}}"
+        idPregunta="{{pregunta.idPregunta}}"
+        [preguntasAgrupables]="preguntasAgrupables">        
+    
+</grafico-pregunta>
