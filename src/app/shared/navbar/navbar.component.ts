@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
-    currentUser: any;
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
     public authenticationService: AuthenticationService;
     model: any = {};
 
@@ -34,16 +34,21 @@ export class NavbarComponent implements OnInit{
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
         this.authenticationService = authenticationService;
         //this.model = this.currentUser;
     }
 
     ngOnInit(){
+        console.log("oninit_navBar")
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (this.currentUser == null || this.currentUser == undefined)
+        {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-        //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        }
+        
     }
     getTitle(){
         var titlee = window.location.pathname;

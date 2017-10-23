@@ -138,21 +138,34 @@ archivarEncuesta(idEncuesta, idUsuario){
     return this.http.post(url,body,options)
 }
 
-getEncuestasByEstado(estado: string){ 
-    return this.http.get(this.serverRestAPIUrl + "/Encuesta") 
-    .map(res => { 
-        this.encuestas = res.json(); 
-        this.encuestas.forEach(element => { 
-            if (element.idUsuario == this.currentUser.idUsuario && element.estadoEncuesta == estado){ 
-                for (var index = 0; index < this.encuestasXusuario.length; index++) { 
-                    var element2 = this.encuestasXusuario[index]; 
-                    if (element2.idEncuesta !== element.idEncuesta){ 
-                        this.encuestasXusuario.splice(0); 
-                        this.encuestasXusuario.push(element); 
-                    } 
-                } 
-            } 
-        }); 
-    }); 
-} 
+// getEncuestasByEstado(estado: string){ 
+//     return this.http.get(this.serverRestAPIUrl + "/Encuesta") 
+//     .map(res => { 
+//         this.encuestas = res.json(); 
+//         this.encuestas.forEach(element => { 
+//             if (element.idUsuario == this.currentUser.idUsuario && element.estadoEncuesta == estado){ 
+//                 for (var index = 0; index < this.encuestasXusuario.length; index++) { 
+//                     var element2 = this.encuestasXusuario[index]; 
+//                     if (element2.idEncuesta !== element.idEncuesta){ 
+//                         this.encuestasXusuario.splice(0); 
+//                         this.encuestasXusuario.push(element); 
+//                     } 
+//                 } 
+//             } 
+//         }); 
+//     }); 
+// }
+
+getEncuestasRespondidas( id ){
+    this.encuestas.splice(0)
+    return this.http.get(this.serverRestAPIUrl + "/Encuesta?idUsuario=" + id )
+        .map(resp => {
+            var surveyModel = new SurveyModelClass();
+            for (let u of resp.json()) {
+                if (u.estadoEncuesta === "respondida"){
+                this.encuestas.push(u)
+                }
+            }
+          });
+}
 }
