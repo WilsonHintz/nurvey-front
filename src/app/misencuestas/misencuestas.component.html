@@ -62,10 +62,10 @@
                                     <div class="col-sm-1" (click)="archivarEncuesta(encuesta.idEncuesta)"  class="ti-trash" item-height="50px" item-width="50px"> </div>
                                 </td>
                                 <td>
-                                    <div class="col-sm-1"  class="ti-stats-up" item-height="50px" item-width="50px"> </div>
+                                    <div class="col-sm-1"  (click)="verEstadisticas(encuesta.idEncuesta)" class="ti-stats-up" item-height="50px" item-width="50px"> </div>
                                 </td>
                                 <td>
-                                    <div class="col-sm-1"  class="ti-sharethis" item-height="50px" item-width="50px"> </div>
+                                    <div class="col-sm-1"  (click)="responderEncuesta(encuesta.idEncuesta)" class="ti-sharethis" item-height="50px" item-width="50px"> </div>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ActivatedRoute, Router,NavigationEnd } from '@angular/router'
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
 import * as Survey from 'survey-angular';
 
 import { SurveyService } from './../shared/services/survey.service';
@@ -21,6 +21,7 @@ export class misEncuestasComponent implements OnInit {
     termino:string ="";
     currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
     
+    
     encuesta = { 
         estadoEncuesta:"" 
     } 
@@ -39,7 +40,8 @@ export class misEncuestasComponent implements OnInit {
             descripcion: "respondida" 
         }] 
 
-    constructor(SurveyService: SurveyService){
+    constructor(SurveyService: SurveyService, private router: Router){
+        
         this.surveyService = SurveyService;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
@@ -124,7 +126,15 @@ export class misEncuestasComponent implements OnInit {
                 } 
             ) 
     }
-    
+
+
+    verEstadisticas(idEncuesta){
+        this.router.navigate(["dashboard"]);
+    }
+
+    responderEncuesta(idEncuesta){
+        this.router.navigate(["respuesta/"+idEncuesta]); 
+    }
     
     
 }

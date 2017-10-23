@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit{
     surveyService: SurveyService;
     preguntasService: PreguntasService;
     preguntasAgrupables:any[];
+    currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
 
     constructor(resultadoService: ResultadoService, surveyService: SurveyService, preguntasService:PreguntasService){
       this.resultadoService = resultadoService;      
@@ -36,8 +37,8 @@ export class DashboardComponent implements OnInit{
     }
 
     loadEncuestas(){
-        this.surveyService.getEncuestas()
-          .subscribe();
+        this.surveyService.getEncuestasRespondidas(this.currentUser.idUsuario)
+          .subscribe(); 
     }
 
     onChange(idEncuesta) {      
