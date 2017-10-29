@@ -10,6 +10,7 @@ import { NotificationsComponent }   from './notifications/notifications.componen
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { misEncuestasComponent } from './misencuestas/misencuestas.component';
+import { misUsuariosComponent } from './misusuarios/misusuarios.component';
 import { respuestaComponent } from './respuesta/respuesta.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { HomeComponent } from './home/index';
@@ -82,6 +83,11 @@ export const AppRoutes: Routes = [
     {
         path: 'respuesta/:id',
         component: respuestaComponent
+    },
+    {
+        path: 'misUsuarios',
+        component: misUsuariosComponent,
+        canActivate: [AuthGuard] 
     }
 
 ]
