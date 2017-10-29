@@ -30,6 +30,8 @@ import { RegisterComponent } from './register/register.component';
 import { PasswordComponent } from './password/password.component';
 import { SurveyEditorComponent } from './surveyEditor/survey.editor.component';
 import { misEncuestasComponent } from './misencuestas/misencuestas.component';
+import { misUsuariosComponent } from './misusuarios/misusuarios.component';
+import { filaUsuarioComponent } from './misusuarios/filausuario.component';
 import { respuestaComponent } from './respuesta/respuesta.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 //import { customHttpProvider } from './shared/helpers/index';
@@ -54,6 +56,8 @@ import { HomeComponent } from './home/index';
     RegisterComponent,
     SurveyEditorComponent,
     misEncuestasComponent,
+    misUsuariosComponent,
+    filaUsuarioComponent,
     respuestaComponent,
     HomeComponent,
     AlertComponent,

@@ -59,7 +59,7 @@ export class PasswordComponent {
           * Actualiza la contraseña por una nueva con los valores id, nombre e email originales de la sesion
           */
          actualizar() {
-          let usuarioMod = new UserModelClass(this.currentUser.idUsuario, this.currentUser.nombreUsuario, this.currentUser.emailUsuario, this.model.passwordUsuario)
+          let usuarioMod = new UserModelClass(this.currentUser.idUsuario, this.currentUser.nombreUsuario, this.currentUser.emailUsuario, this.model.passwordUsuario,this.model.fechaAlta)
           if (this.currentUser.passwordUsuario == this.model.passwordUsuario1)
           {
             this.userService.update(usuarioMod)

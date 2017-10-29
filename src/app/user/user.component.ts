@@ -32,7 +32,7 @@ export class UserComponent {
     }
 
     actualizar() {
-        let usuarioMod = new UserModelClass(this.currentUser.idUsuario, this.model.nombreUsuario, this.model.emailUsuario, this.currentUser.passwordUsuario)
+        let usuarioMod = new UserModelClass(this.currentUser.idUsuario, this.model.nombreUsuario, this.model.emailUsuario, this.currentUser.passwordUsuario,this.model.fechaAlta)
         this.userService.update(usuarioMod)
             .subscribe(
                 data => {
