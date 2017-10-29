@@ -25,24 +25,42 @@ export class SurveyEditorComponent  {
     surveyService: SurveyService;
     newSurvey: SurveyModelClass;
     returnUrl: string;
+    private sub: any;
+    id: number;
     @Input() json: any;
     @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
     /**
      * Metodo de inicio del componente
     **/
-
-    ngOnInit() {
-        let editorOptions = { showEmbededSurveyTab: false, generateValidJSON : true, showJSONEditorTab: false};
-        this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
-        this.editor.text = JSON.stringify(this.json);
-        this.editor.saveSurveyFunc = this.saveMySurvey;
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/misEncuestas';
-    }
-
     constructor(surveyService: SurveyService, private route: ActivatedRoute, private router: Router) {
         this.surveyService = surveyService;
     }
+
+    ngOnInit() {
+        this.sub = this.route.params.subscribe(params => {
+            this.id = +params['id']; // (+) converts string 'id' to a number
+            // var esCreacion = isNaN(this.id)
+            if(isNaN(this.id))
+            {
+            let editorOptions = { showEmbededSurveyTab: false, generateValidJSON : true, showJSONEditorTab: false};
+            this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
+            this.editor.text = JSON.stringify(this.json);
+            this.editor.saveSurveyFunc = this.saveMySurvey;
+            }             
+        else{
+            this.surveyService.getEncuestasById(this.id.toString()).subscribe(res => {
+                let editorOptions = { showEmbededSurveyTab: false, generateValidJSON : true, showJSONEditorTab: false};
+                this.editor = new SurveyEditor.SurveyEditor('surveyEditorContainer', editorOptions);
+                this.editor.text = res.definicionJSON
+                this.editor.saveSurveyFunc = this.saveMySurvey;
+            });
+            }
+        });
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/misEncuestas';
+    }
+
+    
 
     saveMySurvey = () => {
         console.log(this.editor.text); // json puro

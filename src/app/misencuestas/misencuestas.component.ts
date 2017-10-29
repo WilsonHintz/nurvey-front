@@ -127,13 +127,29 @@ export class misEncuestasComponent implements OnInit {
             ) 
     }
 
-
+    /**
+     * Redirije a pantalla de estadisticas de la encuesta seleccionada.
+     * @param idEncuesta id de Encuesta
+     */
     verEstadisticas(idEncuesta){
         this.router.navigate(["dashboard"]);
     }
 
+    /**
+     * Redirije a pantalla de respuesta de la encuesta seleccionada.
+     * @param idEncuesta id de Encuesta
+     */
     responderEncuesta(idEncuesta){
         this.router.navigate(["respuesta/"+idEncuesta]); 
+    }
+
+    /**
+     * Redirije a pantalla de editor de encuesta con la encuesta seleccionada como plantilla base 
+     * para modificar su contenido y crear una nueva encuesta
+     * @param idEncuesta id de Encuesta
+     */
+    clonarEncuesta(idEncuesta){
+        this.router.navigate(["editor/"+idEncuesta]);
     }
     
     
