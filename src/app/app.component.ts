@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import 'jquery';
 import 'bootstrap';
+import { UserService } from './shared/services/index';
 declare var $:any;
 
 @Component({
@@ -9,4 +10,16 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{ }
+export class AppComponent implements OnInit{ 
+
+  currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  constructor(private userService: UserService){
+  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+}
