@@ -62,6 +62,11 @@ export const AppRoutes: Routes = [
         component: NotificationsComponent
     },
     {
+        path: 'editor/:id',
+        component: SurveyEditorComponent,
+        canActivate: [AuthGuard] 
+    },
+    {
         path: 'editor',
         component: SurveyEditorComponent,
         canActivate: [AuthGuard] 
