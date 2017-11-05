@@ -1,21 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 .myclass1 {
-  stroke: #9BE277;
-  fill: #9BE277;
-  color: #9BE277;
+  stroke: #4562ce;
+  fill: #4562ce;
+  color: #4562ce;
 }
 
 .myclass2 {
-  stroke: #0F3;
-  fill: #0F3;
-  color: #0F3;
+  stroke: #eeec56;
+  fill: #eeec56;
+  color: #eeec56;
 }
 
 .myclass3 {
-  stroke: #D70505;
-  fill: #D70505;
-  color: #D70505;
+  stroke: #f88d05;
+  fill: #f88d05;
+  color: #f88d05;
 }
 
 .myclass4 {
@@ -28,4 +28,28 @@
   stroke: #BD6262;
   fill: #BD6262;
   color: #BD6262;
+}
+
+.myclass6 {
+  stroke: #5c215d;
+  fill: #5c215d;
+  color: #5c215d;
+}
+
+.myclass7 {
+  stroke: #9BE277;
+  fill: #9BE277;
+  color: #9BE277;
+}
+
+.myclass8 {
+  stroke: #0F3;
+  fill: #0F3;
+  color: #0F3;
+}
+
+.myclass9 {
+  stroke: #55f0d1;
+  fill: #55f0d1;
+  color: #55f0d1;
 }
