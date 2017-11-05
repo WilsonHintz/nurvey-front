@@ -10,6 +10,8 @@ import * as Chartist from 'chartist';
     templateUrl: './filausuario.component.html'
 })
 export class filaUsuarioComponent implements OnInit {
+    @Input() i: number;
+    n:number;
     @Input() usuario: UserModelClass;
     resultadoService: ResultadoService;
     mostrarGrafico: boolean;
@@ -24,12 +26,14 @@ export class filaUsuarioComponent implements OnInit {
     
     ngOnInit() { 
         
-        
+        this.n = Number(this.i)+1;
         
     } 
 
     toggleGrafico(){        
         this.mostrarGrafico = !this.mostrarGrafico;
+        this.seriesGrafico = [];
+        this.labelsGrafico = [];
         this.resultadoService.getResultadosEncuestasXUsuario(this.usuario.idUsuario)
         .subscribe((resp) => {         
           for(var item = 0; item < resp.labels.length; item++){

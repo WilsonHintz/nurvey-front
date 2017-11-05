@@ -19,27 +19,21 @@
     
             <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-2">nombreUsuario</div>
+                        <div class="col-md-1">#</div>
                         <div class="col-md-1"> 
-                            idUsuario
+                            <b>Id</b>
                         </div>
-                        <div class="col-md-1"> 
-                            nombreUsuario
+                        <div class="col-md-2"> 
+                            <b>Nombre</b>
                         </div>
-                        <div class="col-md-2" >fechaAlta</div>
-                        <div class="col-md-2" >ultimaEncuesta</div>
-                        <div class="col-md-1" >encuestasCreadas</div>
+                        <div class="col-md-2" ><b>Fecha Alta</b></div>
+                        <div class="col-md-2" ><b>Ultima Encuesta</b></div>
+                        <div class="col-md-1" ><b>Encuestas Creadas</b></div>
                         <div class="col-md-3" ></div>
-                    </div>            
-                    <filaUsuario *ngFor="let usuario of usersFiltrados" [usuario]="usuario"></filaUsuario>                                            
+                    </div>                      
+                    <filaUsuario *ngFor="let usuario of usersFiltrados; let i = index;" [usuario]="usuario" i="{{i}}"></filaUsuario>                                            
             </div>
         </div>
-    
-        <div class="col-sm-8" *ngIf="encuestaActiva">
-                <div class="survey-container contentcontainer codecontainer panel svd_content" id="surveyElement"> 
-                    <div id="surveyResult">
-                    </div>
-                </div>
-            </div>
+        
     </div>
     

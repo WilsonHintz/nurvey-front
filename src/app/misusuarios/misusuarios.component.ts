@@ -36,7 +36,7 @@ export class misUsuariosComponent implements OnInit {
     loadUsuarios(){ 
         this.userService.getAll().subscribe(users => { 
             this.users = users;
-            this.usersFiltrados = users;                    
+            this.buscarUsuarios();            
         });
     }     
 
@@ -45,7 +45,15 @@ export class misUsuariosComponent implements OnInit {
         this.users.forEach(user => {
             var busqueda = $("#nombre").val().toString().toLowerCase();
             if(user.nombreUsuario.toLowerCase().includes(busqueda)){
+                if(new Date(user.fechaAlta) < new Date('2001-01-01T00:00:00')){
+                    user.fechaAlta = null;
+                }
+                
+                if(new Date(user.ultimaEncuesta) < new Date('2001-01-01T00:00:00')){
+                    user.ultimaEncuesta = null;
+                }
                 this.usersFiltrados.push(user);
+                console.log(this.usersFiltrados);
             }
         });
         
