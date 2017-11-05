@@ -39,11 +39,10 @@
                 <label for="remember"> Recordarme</label>
               </div>
           <div class="form-group">
-              <button (click)="login()" [disabled]="loading" 
+              <button (click)="login()"  
               class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
-              <!-- <div *ngIf="f.submitted && !login().valid" class="help-block">Usuario o constraseña incorrectos</div> -->
               <div class="panel-footer ">
-                  Aún no tiene cuenta en Nurvey? <a href="/register" onClick=""> Registrarse </a>
+                  Aún no tiene cuenta en Nurvey? <a [routerLink]="['/register']" onClick=""> Registrarse </a>
                 </div>
           </div>
       </form>
@@ -53,90 +52,3 @@
   </div>
 </div>
 
-<!--
-
-<div class="container" style="margin-top:40px">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <div class="panel-body">
-          <form role="form" action="#" method="POST">
-            <fieldset>
-                <div class="row">
-                    <div class="center-block">
-                      <img class="profile-img"
-                        src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="">
-                    </div>
-                  </div>
-              <div class="row">
-                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-user"></i>
-                      </span> 
-                      <input class="form-control" placeholder="Email" name="emailUsuario" type="text" autofocus>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-lock"></i>
-                      </span>
-                      <input class="form-control" placeholder="Contraseña" name="passwordUsuario" type="password" value="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                      <label for="remember"> Recordarme </label>
-                    </div>
-                  <div class="form-group">
-                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar Sesión">
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-        <div class="panel-footer ">
-          Aún no tiene cuenta en Nurvey? <a href="/register" onClick=""> Registrarse </a>
-        </div>
-              </div>
-    </div>
-  </div>
-</div>
-
-
-
-<div class="auth-main">
-  <div class="auth-block">
-    <h1>Iniciar Sesión</h1>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
-      <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
-        </div>
-      </div>
-      <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
-        <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
-
-        <div class="col-sm-10">
-          <input [formControl]="password" type="password" class="form-control" id="inputPassword3" placeholder="Contraseña">
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="offset-sm-8 col-sm-12">
-          <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">Iniciar Sesión</button>
-          <a routerLink="/login" class="forgot-pass">Olvidó su contraseña?</a>
-        </div>
-        <a routerLink="/register" class="auth-link">Nuevo en Nurvey? Regístrate!</a>
-      </div>
-    </form>
-
-  </div>
-</div>
--->

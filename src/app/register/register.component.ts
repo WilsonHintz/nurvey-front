@@ -50,18 +50,32 @@ export class RegisterComponent {
  
     register() {
         this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    //this.alertService.success('Registrado exitosamente', true);
-                    alert("Usuario registrado exitosamente");
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
+        this.userService.getByEmail(this.model.emailUsuario)
+        .subscribe(
+          data => {
+            let userDevuelto = data;
+            console.log(userDevuelto);
+            if(userDevuelto.idUsuario === 0)
+            {
+              this.userService.create(this.model)
+              .subscribe(
+                  data => {
+                      //this.alertService.success('Registrado exitosamente', true);
+                      alert("Usuario registrado exitosamente");
+                      this.router.navigate(['/login']);
+                  },
+                  error => {
+                      this.alertService.error(error);
+                      this.loading = false;
+                  });
+            }
+            else
+            {
+              alert("Email ya existente");
+            }
+          }
+        ) 
+  }
 }
 
 /*

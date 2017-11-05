@@ -24,9 +24,15 @@ export class UserService {
         return this.http.get(this.serverRestAPIUrl + '/Usuario?idUsuario=' + idUsuario).map((response: Response) => response.json());
     }
 
+    getByEmail(emailUsuario: string) {
+        return this.http.get(this.serverRestAPIUrl + '/Usuario?emailUsuario=' + emailUsuario + '&passwordUsuario=')
+        .map((response: Response) => response.json());
+    }
+
     create(user: UserModelClass) {
         let userJson = JSON.stringify(user)
        // console.log(userJson);
+        let userLog = this.serverRestAPIUrl + '/Usuario?emailUsuario=' + user.emailUsuario + '&passwordUsuario='
          let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
          let options = new RequestOptions({
             method: 'POST',
@@ -35,8 +41,19 @@ export class UserService {
             body: JSON.stringify(user)
          });
          let userLogueado = localStorage.getItem('currentUser')
-         console.log(userLogueado);
-        return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
+             console.log(userLogueado);
+             return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
+             
+        //  if (user.emailUsuario !=  userLog )
+        //  {
+        //     let userLogueado = localStorage.getItem('currentUser')
+        //     console.log(userLogueado);
+        //     return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
+        //  }
+        //  else
+        //  {
+        //      alert("Email ya existente")
+        //  }
     }
 
     update(user: UserModelClass) {

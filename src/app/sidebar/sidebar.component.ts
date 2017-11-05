@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalState} from '../global.state';
+import { AuthenticationService } from '../shared/services/authentication.service';
+import { UserService } from '../shared/services/index';
 
 declare var $:any;
 
@@ -28,6 +30,11 @@ export const ROUTES: RouteInfo[] = [
    // { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' },
 ];
 
+export const ROUTESADM: RouteInfo[] = [
+
+    { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' }
+];
+
 @Component({
     moduleId: module.id,
     selector: 'sidebar-cmp',
@@ -38,11 +45,38 @@ export class SidebarComponent implements OnInit {
     public menuItems: any[];
     public isScrolled:boolean = false;
     public isMenuCollapsed:boolean = false;
+    public authenticationService: AuthenticationService;
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
+    constructor(authenticationService: AuthenticationService,
+        private userService: UserService) {
+        this.authenticationService=authenticationService;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      }
 
     ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.esUsuario();
+       // this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
+
+    esUsuario(){
+        if (this.currentUser.idUsuario !=0)
+        {
+            if (this.currentUser.nombreUsuario == "Administrador")
+            {
+                this.menuItems = ROUTESADM.filter(menuItem => menuItem);
+            }
+            else
+            {
+                this.menuItems = ROUTES.filter(menuItem => menuItem);
+            }
+        }
+        else
+        {
+            this.menuItems;
+        }
+    }
+
     isNotMobileMenu(){
         if($(window).width() > 991){
             return false;
@@ -50,11 +84,9 @@ export class SidebarComponent implements OnInit {
         return true;
     }
 
-    // constructor(private _state:GlobalState) {
-    //     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
-    //       this.isMenuCollapsed = isCollapsed;
-    //     });
-    //   }
+
+
+    
     
     //   public toggleMenu() {
     //     this.isMenuCollapsed = !this.isMenuCollapsed;
