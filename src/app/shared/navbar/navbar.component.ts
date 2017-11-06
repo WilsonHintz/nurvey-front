@@ -1,10 +1,11 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer, ViewChild, ElementRef, Input } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AuthenticationService } from '../services/authentication.service'
 import { UserModelClass } from '../models/UserModelClass';
 import { UserService } from '../services/index';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     moduleId: module.id,
@@ -19,8 +20,11 @@ export class NavbarComponent implements OnInit{
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
-    currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    public authenticationService: AuthenticationService;
+
+    @Input() currentUser: UserModelClass;
+
+    isLoggedIn$: Observable<boolean>;
+    // public authenticationService: AuthenticationService;
     model: any = {};
 
     @ViewChild("navbar-cmp") button;
@@ -29,25 +33,29 @@ export class NavbarComponent implements OnInit{
         private renderer : Renderer, 
         private element : ElementRef, 
         private userService: UserService, 
-        authenticationService: AuthenticationService)
+        private authenticationService: AuthenticationService)
         {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
         
-        this.authenticationService = authenticationService;
+        //this.authenticationService = authenticationService;
         //this.model = this.currentUser;
     }
 
     ngOnInit(){
-        console.log("oninit_navBar")
+        
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (this.currentUser == null || this.currentUser == undefined)
+        
+        /*if (this.currentUser == null || this.currentUser == undefined)
         {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-        }
+        }*/
+
+        
+        this.isLoggedIn$ = this.authenticationService.isAuthenticated();
         
     }
     getTitle(){
@@ -68,6 +76,7 @@ export class NavbarComponent implements OnInit{
 
     salir(){
         this.authenticationService.logout();
+        localStorage.removeItem('currentUser');
       }
 
 

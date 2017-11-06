@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {GlobalState} from '../global.state';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { GlobalState } from '../global.state';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { UserService } from '../shared/services/index';
+import { Observable } from 'rxjs/Observable';
 
 declare var $:any;
 
@@ -44,22 +45,29 @@ export class SidebarComponent implements OnInit {
     public menuItems: any[];
     public isScrolled:boolean = false;
     public isMenuCollapsed:boolean = false;
-    public authenticationService: AuthenticationService;
     currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    public isLoggedIn$: Observable<boolean>;
+    
+    @Input() isLogged: boolean;
 
-    constructor(authenticationService: AuthenticationService,
-        private userService: UserService) {
-        this.authenticationService=authenticationService;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      }
+    constructor(private authenticationService: AuthenticationService,private userService: UserService) 
+        {
+        this.isLoggedIn$ = authenticationService.isAuthenticated();
+        }
 
     ngOnInit() {
+        console.log("onInit sideBar")
         this.esUsuario();
        // this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.isLoggedIn$ = this.authenticationService.isAuthenticated();
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.currentUser != null){
+          this.isLogged = true
+        }else{this.isLogged = false}
     }
 
-    esUsuario(){
-        if (this.currentUser.idUsuario !=0)
+    esUsuario(){ 
+        if (this.currentUser != null || this.currentUser != undefined)
         {
             if (this.currentUser.nombreUsuario == "Administrador")
             {
@@ -70,10 +78,6 @@ export class SidebarComponent implements OnInit {
                 this.menuItems = ROUTES.filter(menuItem => menuItem);
             }
         }
-        else
-        {
-            this.menuItems;
-        }
     }
 
     isNotMobileMenu(){
@@ -81,6 +85,10 @@ export class SidebarComponent implements OnInit {
             return false;
         }
         return true;
+    }
+
+    mostrarMenu(nombreUsuario: string):void{
+        alert(nombreUsuario);
     }
 
 

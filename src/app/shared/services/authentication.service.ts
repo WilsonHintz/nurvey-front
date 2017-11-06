@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
 import { UserModelClass } from '../models/UserModelClass';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthenticationService {
     private http: Http;
     private serverRestAPIUrl: string;
-    isLoggedIn = false;
-
+    private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    // private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     /**
      * constructor por parametros
@@ -39,7 +40,7 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     let userLogueado = localStorage.getItem('currentUser')
                     console.log(userLogueado)
-                    this.isLoggedIn = true;
+                    this.isLoggedIn.next(true);
                 }
                 else
                 {
@@ -53,9 +54,14 @@ export class AuthenticationService {
     /**
      * Bandera para saber si el usuario esta logueado o no
      */
-    public isAuthenticated(): boolean {
-        return this.isLoggedIn;
-      } 
+    public isAuthenticated() {
+        return this.isLoggedIn.asObservable();
+      }
+      
+      
+    // get isLoggedIn() {
+    //     return this.loggedIn.asObservable();
+    // }
 
       /**
        * Deslogueo de usuario borrando la sesion
@@ -63,6 +69,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
        localStorage.removeItem('currentUser');
-       this.isLoggedIn = false;
+       this.isLoggedIn.next(false);
     }
 }

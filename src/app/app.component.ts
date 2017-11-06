@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserModelClass } from './shared/models/UserModelClass';
+
 import 'jquery';
 import 'bootstrap';
 declare var $:any;
@@ -9,4 +11,16 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{ }
+export class AppComponent implements OnInit {
+  public currentUser: UserModelClass;
+  public isLogged: boolean;
+
+  ngOnInit() {
+    console.log("ngOnInit_appComponent")
+  }
+
+  mostrarMenu(nombreUsuario: string):void{
+    alert(nombreUsuario);
+}
+
+ }

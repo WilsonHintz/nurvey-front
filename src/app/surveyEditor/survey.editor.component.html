@@ -1,15 +1,17 @@
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 card">
-            <div class="form-group col-sm-4">
-                <label>Ingrese un título para su encuesta: </label>
-                <input type="text" class="form-control border-input" required placeholder="Título Encuesta" [(ngModel)]="titulo"> 
+<navbar-cmp [currentUser]="currentUser" ></navbar-cmp>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 card">
+                <div class="form-group col-sm-4">
+                    <label>Ingrese un título para su encuesta: </label>
+                    <input type="text" class="form-control border-input" required placeholder="Título Encuesta" [(ngModel)]="titulo"> 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div id="surveyEditorContainer"></div>
+    <div class="row">
+        <div id="surveyEditorContainer"></div>
+    </div>
 </div>
