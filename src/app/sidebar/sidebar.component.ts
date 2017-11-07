@@ -24,8 +24,7 @@ export const ROUTES: RouteInfo[] = [
    // { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
    // { path: 'notifications', title: 'Notifications',  icon:'ti-bell', class: '' },
     { path: 'misEncuestas', title: 'Mis Encuestas',  icon:'ti-files', class: '' },
-    { path: 'editor', title: 'Editor',  icon:'ti-pencil-alt', class: '' },
-    { path: 'misUsuarios', title: 'Usuarios',  icon:'ti-list', class: '' },
+    { path: 'editor', title: 'Editor',  icon:'ti-pencil-alt', class: '' }, 
    // { path: 'login', title: 'Iniciar Sesión',  icon:'ti-user', class: '' },
     // { path: 'register', title: 'Registro',  icon:'ti-user', class: '' },
    // { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' },
@@ -33,7 +32,8 @@ export const ROUTES: RouteInfo[] = [
 
 export const ROUTESADM: RouteInfo[] = [
 
-    { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' }
+    { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' },
+    { path: 'misUsuarios', title: 'Usuarios',  icon:'ti-list', class: '' }
 ];
 
 @Component({
