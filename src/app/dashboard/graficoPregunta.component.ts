@@ -20,6 +20,7 @@ export class GraficoPreguntaComponent implements OnInit{
     labelsGrafico = []; 
     seriesGrafico = [];
     ultimaActualizacion: string;
+    cantidadTotalRespuestas : number;
     
 
     constructor(resultadoService: ResultadoService,surveyService: SurveyService){
@@ -34,7 +35,9 @@ export class GraficoPreguntaComponent implements OnInit{
 
 //        colorGenerador = 1;
         this.resultadoService.getResultadosGeneral(this.idEncuesta,this.idPregunta)
-        .subscribe((resp) => {         
+        .subscribe((resp) => {        
+          this.cantidadTotalRespuestas = resp.cantidadTotalRespuestas; 
+          this.ultimaActualizacion = resp.ultimaActualizacion;
           for(var item = 0; item < resp.labels.length; item++){
             this.labelsGrafico.push(resp.labels[item]);    
             var serie = resp.series[item];
@@ -50,7 +53,7 @@ export class GraficoPreguntaComponent implements OnInit{
           });          
         });
 
-        this.ultimaActualizacion = new Date().toLocaleString();        
+        //this.ultimaActualizacion = new Date().toLocaleString();        
 
     }
 

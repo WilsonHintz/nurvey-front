@@ -3,6 +3,7 @@ import { UserModelClass } from './shared/models/UserModelClass';
 
 import 'jquery';
 import 'bootstrap';
+import { UserService } from './shared/services/index';
 declare var $:any;
 
 @Component({
