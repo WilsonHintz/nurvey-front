@@ -18,7 +18,7 @@ import { AuthGuard } from './shared/guards/index';
 import { PasswordComponent } from './password/password.component';
 
 export const AppRoutes: Routes = [
-
+    
     { 
         path: '',
         redirectTo: 'dashboard',

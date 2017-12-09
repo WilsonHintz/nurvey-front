@@ -1,14 +1,14 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="dashboard" class="simple-text">
+        <a class="simple-text">
             <div class="logo-img">
                 <img src="../../assets/img/logo.png" alt="">
             </div>
             Nurvey
         </a>
     </div>
-    <ul class="nav">
+    <ul class="nav" *ngIf="isLogged">
             <li class="divider" *ngIf="isNotMobileMenu()"></li>
         <li  
         *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">

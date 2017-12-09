@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms'; 
 import { AlertService, AuthenticationService } from '../shared/services/index';
+import { UserModelClass } from '../shared/models/UserModelClass';
 import {EmailValidator} from '../register/validators';
 import {Http, Headers} from "@angular/http";
 import {NgClass} from '@angular/common';
@@ -21,6 +22,9 @@ export class LoginComponent implements OnInit {
     public form:FormGroup;
     public email:AbstractControl;
     public password:AbstractControl;
+    public isLoggedIn$: Observable<boolean>;
+    public currentUser: UserModelClass;
+    @Output() currentUserEmitter = new EventEmitter(); 
 
     nome :any = localStorage['app-appHeader'];
     model: any = {};
@@ -60,11 +64,14 @@ export class LoginComponent implements OnInit {
           });
   
           idle.watch();
+
+          this.isLoggedIn$ = this.authenticationService.isAuthenticated();
          }
  
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
+        localStorage.removeItem('currentUser');
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
@@ -74,12 +81,19 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.emailUsuario, this.model.passwordUsuario)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    //this.router.navigate([this.returnUrl]);
+                    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+                    this.currentUserEmitter.emit(this.currentUser.nombreUsuario)
+                    window.location.href = "/home"
                 },
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });
     }
+
+//     emiteLogueado(event){
+//         this.estaLogueado.emit({logueado: this.isLoggedIn$});
+// }
 }
 

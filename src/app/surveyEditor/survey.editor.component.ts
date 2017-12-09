@@ -27,14 +27,16 @@ export class SurveyEditorComponent  {
     returnUrl: string;
     private sub: any;
     id: number;
+    currentUser:any = JSON.parse(localStorage.getItem('currentUser'));
     @Input() json: any;
     @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
     /**
      * Metodo de inicio del componente
-    **/
+    **/ 
     constructor(surveyService: SurveyService, private route: ActivatedRoute, private router: Router) {
         this.surveyService = surveyService;
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {

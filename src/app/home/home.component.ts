@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { UserModelClass } from '../shared/models/UserModelClass';
 import { UserService } from '../shared/services/index';
@@ -12,9 +12,12 @@ import { UserService } from '../shared/services/index';
 export class HomeComponent {
     currentUser: UserModelClass;
     users: UserModelClass[] = [];
+    @Output() PasameElPueblo = new EventEmitter();
 
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.PasameElPueblo.emit({usuario: this.currentUser});
+        
     }
 
     ngOnInit() {

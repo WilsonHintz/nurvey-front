@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {GlobalState} from '../global.state';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { GlobalState } from '../global.state';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { UserService } from '../shared/services/index';
+import { Observable } from 'rxjs/Observable';
 
 declare var $:any;
 
@@ -23,8 +24,7 @@ export const ROUTES: RouteInfo[] = [
    // { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
    // { path: 'notifications', title: 'Notifications',  icon:'ti-bell', class: '' },
     { path: 'misEncuestas', title: 'Mis Encuestas',  icon:'ti-files', class: '' },
-    { path: 'editor', title: 'Editor',  icon:'ti-pencil-alt', class: '' },
-    { path: 'misUsuarios', title: 'Usuarios',  icon:'ti-list', class: '' },
+    { path: 'editor', title: 'Editor',  icon:'ti-pencil-alt', class: '' }, 
    // { path: 'login', title: 'Iniciar Sesión',  icon:'ti-user', class: '' },
     // { path: 'register', title: 'Registro',  icon:'ti-user', class: '' },
    // { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' },
@@ -32,7 +32,8 @@ export const ROUTES: RouteInfo[] = [
 
 export const ROUTESADM: RouteInfo[] = [
 
-    { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' }
+    { path: 'home', title: 'Home',  icon:'ti-desktop', class: '' },
+    { path: 'misUsuarios', title: 'Usuarios',  icon:'ti-list', class: '' }
 ];
 
 @Component({
@@ -45,22 +46,29 @@ export class SidebarComponent implements OnInit {
     public menuItems: any[];
     public isScrolled:boolean = false;
     public isMenuCollapsed:boolean = false;
-    public authenticationService: AuthenticationService;
     currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    public isLoggedIn$: Observable<boolean>;
+    
+    @Input() isLogged: boolean;
 
-    constructor(authenticationService: AuthenticationService,
-        private userService: UserService) {
-        this.authenticationService=authenticationService;
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      }
+    constructor(private authenticationService: AuthenticationService,private userService: UserService) 
+        {
+        this.isLoggedIn$ = authenticationService.isAuthenticated();
+        }
 
     ngOnInit() {
+        console.log("onInit sideBar")
         this.esUsuario();
        // this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.isLoggedIn$ = this.authenticationService.isAuthenticated();
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.currentUser != null){
+          this.isLogged = true
+        }else{this.isLogged = false}
     }
 
-    esUsuario(){
-        if (this.currentUser.idUsuario !=0)
+    esUsuario(){ 
+        if (this.currentUser != null || this.currentUser != undefined)
         {
             if (this.currentUser.nombreUsuario == "Administrador")
             {
@@ -71,10 +79,6 @@ export class SidebarComponent implements OnInit {
                 this.menuItems = ROUTES.filter(menuItem => menuItem);
             }
         }
-        else
-        {
-            this.menuItems;
-        }
     }
 
     isNotMobileMenu(){
@@ -82,6 +86,10 @@ export class SidebarComponent implements OnInit {
             return false;
         }
         return true;
+    }
+
+    mostrarMenu(nombreUsuario: string):void{
+        alert(nombreUsuario);
     }
 
 

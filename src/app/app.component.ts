@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModelClass } from './shared/models/UserModelClass';
+
 import 'jquery';
 import 'bootstrap';
 import { UserService } from './shared/services/index';
@@ -10,16 +12,16 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{ 
-
-  currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-  constructor(private userService: UserService){
-  this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
+export class AppComponent implements OnInit {
+  public currentUser: UserModelClass;
+  public isLogged: boolean;
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log("ngOnInit_appComponent")
   }
 
+  mostrarMenu(nombreUsuario: string):void{
+    alert(nombreUsuario);
 }
+
+ }

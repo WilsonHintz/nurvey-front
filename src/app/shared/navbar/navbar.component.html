@@ -7,25 +7,31 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="#">{{getTitle()}}</a>
+            <!-- <a class="navbar-brand" href="#">{{getTitle()}}</a> -->
+            <!-- *ngIf="isLoggedIn$ | async as isLoggedIn" -->
+            <!-- *ngIf="!authenticationService.isAuthenticated()" -->
         </div>
-        <div class="collapse navbar-collapse"  >
+        <div class="collapse navbar-collapse" *ngIf="isLoggedIn$">
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!authenticationService.isAuthenticated()">
+                <li >
                     <!-- 
                         <button 
                         (click)="salir()" *ngIf="authenticationService.isAuthenticated()" 
                         type="button" class="btn btn-primary" [routerLink]="['/login']">Salir</button>
                         -->
                          <button 
-                         *ngIf="!authenticationService.isAuthenticated()"
+                         *ngIf="!isLoggedIn$"
                         [routerLink]="['login']"
                         type="button" class="btn btn-primary">Ingresar</button>
                 </li> 
-                <li class="dropdown" *ngIf="authenticationService.isAuthenticated()">
+                <!-- *ngIf="authenticationService.isAuthenticated()" -->
+                <li class="dropdown" >
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
-                        <strong *ngIf="authenticationService.isAuthenticated()">{{currentUser.nombreUsuario}}</strong>
+                        <!-- *ngIf="authenticationService.isAuthenticated()" -->
+                        <strong *ngIf="isLoggedIn$">
+                            {{currentUser.nombreUsuario}}
+                        </strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -37,7 +43,7 @@
                                             <span class="glyphicon glyphicon-user icon-size"></span>
                                         </p>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-8" *ngIf="isLoggedIn$">
                                         <p class="text-left"><strong>{{currentUser.nombreUsuario}}</strong></p>
                                         <p class="text-left small">{{currentUser.emailUsuario}}</p>
                                         <p class="text-left">
@@ -54,7 +60,7 @@
                                     <div class="col-lg-12">
                                         <p>
                                             <a href="#" (click)="salir()" 
-                                            class="btn btn-danger btn-block" [routerLink]="['/login']">Cerrar Sesion</a>
+                                            class="btn btn-danger btn-block" href="/login">Cerrar Sesion</a>
                                         </p>
                                     </div>
                                 </div>
