@@ -8,10 +8,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^1.5.0",
+    "@angular/compiler-cli": "^4.4.6",
     "@angular/animations": "^4.4.6",
     "@angular/common": "^4.4.6",
     "@angular/compiler": "^4.4.6",
@@ -37,6 +40,7 @@
     "moment": "^2.19.1",
     "node-sass": "^4.6.0",
     "rxjs": "^5.5.2",
+    "typescript": "~2.3.3",
     "survey-angular": "^0.12.36",
     "surveyjs-editor": "^0.12.36",
     "zone.js": "^0.8.18"
@@ -48,6 +52,7 @@
     "@types/jasmine": "2.5.45",
     "@types/node": "^6.0.90",
     "codelyzer": "~3.0.1",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
@@ -61,5 +66,9 @@
     "tslint": "~5.3.2",
     "typescript": "~2.3.3",
     "webpack": "^3.8.1"
+  },
+  "engines": {
+    "node": "8.10.0",
+    "npm": "5.6.0"
   }
 }
