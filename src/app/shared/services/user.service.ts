@@ -17,15 +17,19 @@ export class UserService {
      }
 
     getAll() {
-        return this.http.get(this.serverRestAPIUrl + '/Usuario').map((response: Response) => response.json());
+        return this.http.get(this.serverRestAPIUrl + '/Usuario')
+        .map((response: Response) => response.json());
     }
 
     getByid(idUsuario: string) {
-        return this.http.get(this.serverRestAPIUrl + '/Usuario?idUsuario=' + idUsuario).map((response: Response) => response.json());
+        return this.http.get(this.serverRestAPIUrl + '/Usuario?idUsuario=' + idUsuario)
+        .map((response: Response) => response.json());
     }
 
     getByEmail(emailUsuario: string) {
-        return this.http.get(this.serverRestAPIUrl + '/Usuario?emailUsuario=' + emailUsuario + '&passwordUsuario=')
+        //return this.http.get(this.serverRestAPIUrl + '/Usuario?emailUsuario=' + emailUsuario + '&passwordUsuario=')
+        let parNull = null
+        return this.http.get('http://nurvey-back.herokuapp.com/api/Usuario/autenticacion/' + emailUsuario + '/' + parNull)
         .map((response: Response) => response.json());
     }
 
@@ -36,13 +40,15 @@ export class UserService {
          let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8','Accept': 'application/json' }); 
          let options = new RequestOptions({
             method: 'POST',
-            url: this.serverRestAPIUrl + '/Usuario',
+            // url: this.serverRestAPIUrl + '/Usuario',
+            url: 'http://nurvey-back.herokuapp.com/api/Usuario',
             headers: headers,
             body: JSON.stringify(user)
          });
          let userLogueado = localStorage.getItem('currentUser')
              console.log(userLogueado);
-             return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
+             //return this.http.post(this.serverRestAPIUrl + '/Usuario', userJson, options);
+         return this.http.post('http://nurvey-back.herokuapp.com/api/Usuario', userJson, options);
              
         //  if (user.emailUsuario !=  userLog )
         //  {
